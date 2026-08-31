@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حلويات أبو كيان | المذاق الأصيل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #121212;
+            --nav-bg: #1a1a1a;
+            --text-color: #f4f4f4;
+            --card-bg: #1e1e1e;
+            --dessert-gold: #ffc300;
+            --transition: 0.3s;
+        }
+
+        body.light-mode {
+            --bg-color: #f9f9f9;
+            --nav-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        /* --- الناف بار المصغر --- */
+        nav {
+            background: var(--nav-bg);
+            padding: 10px 4%; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+            height: 55px; 
+        }
+
+        .logo { font-size: 1.3rem; font-weight: 700; color: var(--dessert-gold); text-decoration: none; }
+
+        .nav-links { display: flex; list-style: none; gap: 12px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 0.75rem;
+            padding: 2px;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--dessert-gold); }
+
+        .mode-btn {
+            background: var(--dessert-gold);
+            color: #000;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* الهيدر القديم */
+        header.hero {
+            padding: 50px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=1200');
+            background-size: cover;
+            background-position: center;
+        }
+
+        header.hero h1 { font-size: 2.2rem; color: var(--dessert-gold); }
+
+        /* --- المنيو بتنسيق "الصورة في المنتصف" --- */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .dessert-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 15px; /* مساحة داخلية لراحة العين */
+            text-align: center;
+            border-top: 4px solid var(--dessert-gold);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- تنسيق الصورة لتكون منسقة وفي النص --- */
+        .img-box {
+            width: 100%;
+            height: 180px; /* طول مناسب جداً */
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* تجعل الصورة تملأ المكان وتتوسطه بجمال */
+            display: block;
+        }
+
+        .dessert-card h3 {
+            color: var(--dessert-gold);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .dessert-card p {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .price { font-size: 1.2rem; font-weight: 700; color: var(--dessert-gold); }
+
+        .btn-order {
+            background: var(--dessert-gold);
+            color: #000;
+            padding: 6px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: #25d366;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            z-index: 1000;
+        }
+
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #555; }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <!-- الناف بار الشامل -->
+    <nav>
+        <a href="" class="logo">أبو كيان</a>
+        <ul class="nav-links">
+            <li><a href="الصفحة الرئيسية.html">الرئيسية</a></li>
+            <li><a href="قائمة الطعام.html">قائمة الطعام</a></li>
+            <li><a href="برجر ووجبات سريعة.html">برجر ووجبات سريعة</a></li>
+            <li><a href="صفحة بيتزا ومعجنات.html">بيتزا ومعجنات</a></li>
+            <li><a href="صفحة المشويات.html">المشويات</a></li>
+            <li><a href="صفحة الحلويات.html" class="active">الحلويات</a></li>
+            <li><a href="صفحة تواصل معنا.html">تواصل معنا</a></li>
+        </ul>
+        <button class="mode-btn" onclick="toggleMode()" id="mode-toggle">
+            <span id="btn-text">Night Mode</span> <span id="btn-icon">☀️</span>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <h1>ركن الحلويات</h1>
+        <p>مذاق السعادة في كل قضمة من مطعم أبو كيان.</p>
+    </header>
+
+    <div class="container">
+        <div class="menu-grid">
+            
+            <!-- حلوى 1 -->
+            <div class="dessert-card">
+                <div class="img-box">
+                    <img src="photo/بقلاوة بة الفستق.jfif" alt="بقلاوة بالفستق">
+                </div>
+                <h3>بقلاوة بالفستق الملكي</h3>
+                <p>رقائق من العجين الهش محشوة بالفستق ومعززة بالعسل الطبيعي.</p>
+                <div class="price-row">
+                    <span class="price">180 ج.م</span>
+                    <a href="" class="btn-order">اطلب</a>
+                </div>
+            </div>
+
+            <!-- حلوى 2 -->
+            <div class="dessert-card">
+                <div class="img-box">
+                    <img src="photo/كنافة بة القشطة البلدى.jfif" alt="كنافة بالقشطة">
+                </div>
+                <h3>كنافة بالقشطة البلدية</h3>
+                <p>كنافة ناعمة محضرة بمزيج من السمن البلدي والقشطة الغنية.</p>
+                <div class="price-row">
+                    <span class="price">120 ج.م</span>
+                    <a href="" class="btn-order">اطلب</a>
+                </div>
+            </div>
+
+            <!-- حلوى 3 -->
+            <div class="dessert-card">
+                <div class="img-box">
+                    <img src="photo/تشيز كيك ريد فيلفت.jfif" alt="تشيز كيك">
+                </div>
+                <h3>تشيز كيك ريد فيلفيت</h3>
+                <p>قوام كريمي فاخر مع قاعدة من البسكويت ولمسة الريد فيلفيت.</p>
+                <div class="price-row">
+                    <span class="price">65 ج.م</span>
+                    <a href="" class="btn-order">اطلب</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <a href="" class="whatsapp-fixed" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <p>تصميم مبرمج أحمد حسن 2026 © جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                btnText.innerText = "Dark Mode"; btnIcon.innerText = "🌙";
+            } else {
+                btnText.innerText = "Night Mode"; btnIcon.innerText = "☀️";
+            }
+        }
+    </script>
+</body>
+</html>

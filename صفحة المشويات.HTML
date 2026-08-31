@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشويات ابو كيان  | مطعم أبو كيان</title>
+<link rel="icon" type="image/jpeg" href="لوجو ابو كيان.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #121212;
+            --nav-bg: #1a1a1a;
+            --text-color: #f4f4f4;
+            --card-bg: #1e1e1e;
+            --fire-orange: #ff4500;
+            --soft-gold: #c5a059;
+            --transition: 0.3s;
+        }
+
+        body.light-mode {
+            --bg-color: #f9f9f9;
+            --nav-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        /* --- شريط التنقل المصغر --- */
+        nav {
+            background: var(--nav-bg);
+            padding: 5px 2%; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+            height: 50px; 
+        }
+
+        .logo { font-size: 1.1rem; font-weight: 700; color: var(--fire-orange); text-decoration: none; }
+
+        .nav-links { display: flex; list-style: none; gap: 10px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 0.7rem;
+            padding: 2px;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--fire-orange); }
+
+        .mode-btn {
+            background: var(--fire-orange);
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.65rem;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        /* الهيدر */
+        header.hero {
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        header.hero h1 { font-size: 2.2rem; color: var(--fire-orange); }
+
+        .btn-menu {
+            margin-top: 15px;
+            padding: 10px 25px;
+            background: var(--fire-orange);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* --- تنسيق المنيو الاحترافي (منسق) --- */
+        .menu-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex; /* وضع الصورة بجانب الكلام */
+            align-items: center;
+            gap: 15px;
+            border-bottom: 3px solid var(--fire-orange);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .menu-card:hover { transform: scale(1.02); }
+
+        .menu-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 12px;
+            border: 2px solid var(--fire-orange);
+            flex-shrink: 0; /* منع الصورة من الانكماش */
+        }
+
+        .menu-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 120px; /* تناسق مع طول الصورة */
+        }
+
+        .menu-info h3 {
+            color: var(--fire-orange);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .menu-info p {
+            color: #888;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--soft-gold);
+        }
+
+        .order-btn {
+            background: var(--fire-orange);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .order-btn:hover { background: white; color: var(--fire-orange); }
+
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #25d366;
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            z-index: 1000;
+        }
+
+        @media (max-width: 600px) {
+            .menu-card { flex-direction: column; text-align: center; height: auto; }
+            .menu-img { width: 100%; height: 180px; }
+            .menu-info { height: auto; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <nav>
+        <a href="" class="logo">أبو كيان</a>
+        <ul class="nav-links">
+            <li><a href="الصفحة الرئيسية.html">الرئيسية</a></li>
+            <li><a href="قائمة الطعام.html">قائمة الطعام</a></li>
+            <li><a href="برجر ووجبات سريعة.html">برجر ووجبات سريعة</a></li>
+            <li><a href="صفحة بيتزا ومعجنات.html">بيتزا ومعجنات</a></li>
+            <li><a href="صفحة المشويات.html" class="active">المشويات</a></li>
+            <li><a href="صفحة الحلويات.html">الحلويات</a></li>
+            <li><a href="صفحة تواصل معنا.html">تواصل معنا</a></li>
+        </ul>
+        <button class="mode-btn" onclick="toggleMode()" id="mode-toggle">
+            <span id="btn-text">Night Mode</span> <span id="btn-icon">☀️</span>
+        </button>
+    </nav>
+
+    <header class="hero">
+        <h1>مشويات ابو كيان</h1>
+        <p>مذاق الشواء الأصلي بلمسة أبو كيان الخاصة.</p>
+        <a href="قائمة الطعام.html" class="btn-menu">تصفح المنيو الكامل</a>
+    </header>
+
+    <div class="menu-container">
+        <div class="menu-grid">
+            
+            <!-- الصنف 1 -->
+            <div class="menu-card">
+                <img src="photo/كباب.jfif" alt="كباب" class="menu-img">
+                <div class="menu-info">
+                    <div>
+                        <h3>كباب على الفحم</h3>
+                        <p>لحم بلدي فاخر مشوي على الفحم مباشرة.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">320 جنيه</span>
+                        <a href="" class="order-btn">اطلب</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الصنف 2 -->
+            <div class="menu-card">
+                <img src="photo/كفتة مشوية.jfif" alt="كفتة" class="menu-img">
+                <div class="menu-info">
+                    <div>
+                        <h3>كفتة مشوية</h3>
+                        <p>كفتة بلدي متبلة بالبهارات السرية الرائعة.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">220 جنيه</span>
+                        <a href="" class="order-btn">اطلب</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الصنف 3 -->
+            <div class="menu-card">
+                <img src="photo/طرب ضانى.jfif" alt="طرب" class="menu-img">
+                <div class="menu-info">
+                    <div>
+                        <h3>طرب ضأني</h3>
+                        <p>المذاق الغني واللحم المتبل في منديل الضأن.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">280 جنيه</span>
+                        <a href="" class="order-btn">اطلب</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <a href="" class="whatsapp-fixed">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                btnText.innerText = "Dark Mode"; btnIcon.innerText = "🌙";
+            } else {
+                btnText.innerText = "Night Mode"; btnIcon.innerText = "☀️";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- استيراد الخطوط والأيقونات -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="icon" type="image/jpeg" href="لوجو ابو كيان.jpg">
+    <title>ابو كيان - الصفحة الرئيسية</title>
+    
+    <style>
+        :root {
+            --primary-orange: #ff7e00; 
+            --dark-brown: #2d1e16;
+            --soft-white: #fcfaf8;
+            --bg-card: #ffffff;
+            --shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--soft-white);
+            color: var(--dark-brown);
+        }
+
+        /* ناف بار */
+        nav {
+            background: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-orange);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-brown);
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-orange); }
+
+        .cart-box {
+            background: var(--primary-orange);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 { font-size: 3.5rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.4rem; margin-bottom: 30px; }
+        .hero .btn {
+            background: var(--primary-orange);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+        .hero .btn:hover { background: white; color: var(--primary-orange); }
+
+        /* تصنيفات الطعام */
+        .categories {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .category-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 20px;
+            transition: 0.4s;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: var(--dark-brown);
+            display: block;
+        }
+
+        .category-card:hover { 
+            transform: translateY(-15px); 
+            background: var(--primary-orange); 
+            color: white; 
+        }
+        .category-card i { font-size: 3rem; margin-bottom: 15px; }
+        .category-card p { font-weight: bold; font-size: 1.2rem; }
+
+        /* Menu Section */
+        .menu { padding: 50px 5%; background: #fefefe; }
+        .menu-title { text-align: center; margin-bottom: 50px; font-size: 2.5rem; color: var(--primary-orange); }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .food-img {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .food-info { padding: 20px; }
+        .food-info h3 { margin-bottom: 10px; }
+        .food-info .price { color: var(--primary-orange); font-size: 1.4rem; font-weight: 700; }
+        
+        .add-to-cart {
+            margin-top: 15px;
+            width: 100%;
+            padding: 10px;
+            border: 2px solid var(--primary-orange);
+            background: none;
+            color: var(--primary-orange);
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .add-to-cart:hover { background: var(--primary-orange); color: white; }
+
+        footer {
+            background: var(--dark-brown);
+            color: white;
+            padding: 50px 5% 20px;
+            text-align: center;
+        }
+
+        .social-icons { margin-bottom: 20px; font-size: 1.5rem; gap: 20px; display: flex; justify-content: center; }
+        .social-icons i { cursor: pointer; transition: 0.3s; color: white; margin: 0 10px;}
+        .social-icons i:hover { color: var(--primary-orange); }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="" class="logo">
+            <i class="fas fa-utensils"></i>
+            <span>مطعم ابو كيان</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#hero">الرئيسية</a></li>
+            <li><a href="#categories">الأصناف</a></li>
+            <!-- تم التغيير هنا -->
+           <li><a href="قائمة الطعام.html">قائمة الطعام</a></li>
+            <li><a href="صفحة تواصل معنا.html">تواصل معنا</a></li>
+        </ul>
+        <!-- تم التغيير هنا -->
+        <a href="قائمة الطعام.html" class="cart-box">
+            <i class="fas fa-shopping-basket"></i>
+            <span>طلب الآن</span>
+        </a>
+    </nav>
+
+    <section class="hero" id="hero">
+        <h1>مستعد لرحلة ممتعة في عالم التذوق؟</h1>
+        <p>أفضل المأكولات العالمية والشرقية بتوصيل سريع حتى باب منزلك</p>
+        <!-- تم التغيير هنا -->
+        <a href="قائمة الطعام.html" class="btn">استعرض قائمة الطعام</a>
+    </section>
+
+    <section class="categories" id="categories">
+        <h2>اختر صنفك المفضل</h2>
+        <div class="categories-grid">
+            
+            <a href="صفحة بيتزا ومعجنات.html" class="category-card">
+                <i class="fas fa-pizza-slice"></i>
+                <p>بيتزا ومعجنات</p>
+            </a>
+
+            <a href="برجر ووجبات سريعة.html" class="category-card">
+                <i class="fas fa-hamburger"></i>
+                <p>برجر ووجبات سريعة</p>
+            </a>
+
+            <a href="صفحة المشويات.html" class="category-card">
+                <i class="fas fa-drumstick-bite"></i>
+                <p>مشويات ابو كيان</p>
+            </a>
+
+            <a href="صفحة الحلويات.html" class="category-card">
+                <i class="fas fa-ice-cream"></i>
+                <p>ركن الحلويات</p>
+            </a>
+            
+        </div>
+    </section>
+
+    <section class="menu" id="menu">
+        <h2 class="menu-title">أطباق مميزة</h2>
+        <div class="menu-grid">
+            
+            <div class="food-card">
+                <div class="food-img" style="background-image: url('photo/صور بيتزا (2).jfif');"></div>
+                <div class="food-info">
+                    <h3>بيتزا إيطالية فاخرة</h3>
+                    <p>خضروات طازجة مع أجبان إيطالية أصلية.</p>
+                    <span class="price">85 جنيه</span>
+                    <button class="add-to-cart" onclick="location.href='صفحة بيتزا ومعجنات.html'">التفاصيل</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-img" style="background-image: url('photo/برجر.jfif');"></div>
+                <div class="food-info">
+                    <h3>كلاسيك تشيز برجر</h3>
+                    <p>برجر مشوي، خس، طماطم، صوص الخردل.</p>
+                    <span class="price">220 جنيه</span>
+                    <button class="add-to-cart" onclick="location.href='برجر ووجبات سريعة.html'">التفاصيل</button>
+                </div>
+            </div>
+
+            <div class="food-card">
+                <div class="food-img" style="background-image: url('photo/كفتة.jfif');"></div>
+                <div class="food-info">
+                    <h3>كفتة مشوية على السيخ</h3>
+                    <p>كفتة بلدي مدخنة برائحة الفحم مع بقدونس وبصل.</p>
+                    <span class="price">250 جنيه</span>
+                    <button class="add-to-cart" onclick="location.href='صفحة المشويات.html'">التفاصيل</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://wa.me/201122278442"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>تصميم مبرمج أحمد حسن © 2026</p>
+        <p>إيميل: ahmed.adelgin@gmail.com | واتساب: 01122278442</p>
+        <div style="margin-top: 15px;">
+            <a href="صفحة تواصل معنا.html" style="color: var(--primary-orange); text-decoration: none;">تواصل معنا الآن</a>
+        </div>
+    </footer>
+
+</body>
+</html>

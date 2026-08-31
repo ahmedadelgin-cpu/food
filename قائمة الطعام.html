@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <link rel="icon" type="image/jpeg" href="لوجو ابو كيان.jpg">
+<title>قائمة طعام أبو كيان | المنيو الكامل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff4500;
+            --secondary: #ffc300;
+            --bg-color: #121212;
+            --nav-bg: #1a1a1a;
+            --text-color: #f4f4f4;
+            --card-bg: #1e1e1e;
+            --transition: 0.3s;
+        }
+
+        body.light-mode {
+            --bg-color: #f9f9f9;
+            --nav-bg: #ffffff;
+            --text-color: #1a1a1a;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+        }
+
+        /* --- القائمة العلوية المصغرة --- */
+        nav {
+            background: var(--nav-bg);
+            height: 55px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 4%;
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo { font-size: 1.3rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+
+        .nav-links { display: flex; list-style: none; gap: 12px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 0.75rem;
+            padding: 2px;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+        .mode-btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* هيدر المنيو */
+        header.menu-header {
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        header h1 { font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
+
+        /* روابط سريعة داخل المنيو */
+        .quick-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .quick-nav a {
+            background: var(--card-bg);
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            border: 1px solid var(--primary);
+            font-weight: bold;
+        }
+
+        /* أقسام المنيو */
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        
+        .category-title {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 50px 0 25px;
+            text-align: center;
+            border-bottom: 2px dashed var(--secondary);
+            display: block;
+            padding-bottom: 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* كارت الوجبة (المنسق في المنتصف) */
+        .food-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .img-box {
+            width: 100%;
+            height: 180px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .food-card h3 { color: var(--secondary); margin-bottom: 10px; font-size: 1.3rem; }
+        .food-card p { font-size: 0.85rem; color: #888; margin-bottom: 15px; min-height: 35px; }
+
+        .price-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid rgba(128,128,128,0.1);
+        }
+
+        .price { font-size: 1.2rem; font-weight: 700; color: var(--secondary); }
+
+        .btn-order {
+            background: var(--primary);
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        .whatsapp-fixed {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            background: #25d366;
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            z-index: 3000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-decoration: none;
+        }
+
+        footer { text-align: center; padding: 40px; color: #666; font-size: 0.8rem; }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <!-- الناف بار (موحد كما طلبت) -->
+    <nav>
+        <a href="" class="logo">أبو كيان</a>
+        <ul class="nav-links">
+            <li><a href="الصفحة الرئيسية.html">الرئيسية</a></li>
+            <li><a href="قائمة الطعام.html" class="active">قائمة الطعام</a></li>
+            <li><a href="برجر ووجبات سريعة.html">برجر ووجبات</a></li>
+            <li><a href="صفحة بيتزا ومعجنات.html">بيتزا ومعجنات</a></li>
+            <li><a href="صفحة المشويات.html">المشويات</a></li>
+            <li><a href="صفحة الحلويات.html">الحلويات</a></li>
+            <li><a href="صفحة تواصل معنا.html">تواصل معنا</a></li>
+        </ul>
+        <button class="mode-btn" onclick="toggleMode()" id="mode-toggle">
+            <span id="btn-text">Night Mode</span> <span id="btn-icon">☀️</span>
+        </button>
+    </nav>
+
+    <header class="menu-header">
+        <h1>المنيو الكامل - مطعم أبو كيان</h1>
+        <div class="quick-nav">
+            <a href="#pizza">🍕 البيتزا</a>
+            <a href="#burger">🍔 البرجر</a>
+            <a href="#grill">🍖 المشويات</a>
+            <a href="#dessert">🍰 الحلويات</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- قسم البيتزا -->
+        <h2 class="category-title" id="pizza">ركن البيتزا والمعجنات</h2>
+        <div class="menu-grid">
+            <div class="food-card">
+                <div class="img-box"><img src="photo/صور بيتزا (2).jfif" alt="مارجريتا"></div>
+                <h3>بيتزا مارجريتا</h3>
+                <p>صوص طماطم إيطالي مع جبنة موتزاريلا وريحان.</p>
+                <div class="price-row"><span class="price">90 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+            <div class="food-card">
+                <div class="img-box"><img src="photo/صور بيتزا (3).jfif" alt="رانش"></div>
+                <h3>تشيكن رانش</h3>
+                <p>دجاج، صوص رانش فاخر، زيتون، وفلفل.</p>
+                <div class="price-row"><span class="price">145 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+            <div class="food-card">
+                <div class="img-box"><img src="photo/منقوشة.jfif" alt="منقوشة"></div>
+                <h3>منقوشة لحم بالجبن</h3>
+                <p>لحم متبل بالجبن على عجين طازج.</p>
+                <div class="price-row"><span class="price">65 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+        </div>
+
+        <!-- قسم البرجر -->
+        <h2 class="category-title" id="burger">ركن البرجر والوجبات</h2>
+        <div class="menu-grid">
+            <div class="food-card">
+                <div class="img-box"><img src="photo/كرانشي تشيكن.jfif" alt="تشيكن"></div>
+                <h3>كرانشي تشيكن ميل</h3>
+                <p>صدور مقرمشة حارة، بطاطس صمول وثومية.</p>
+                <div class="price-row"><span class="price">110 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+            <div class="food-card">
+                <div class="img-box"><img src="photo/تشيكن كلاسيك.jfif" alt="كلاسيك"></div>
+                <h3>كلاسيك تشيز برجر</h3>
+                <p>برجر مشوي، خس، صوص خردل، وضعف جبنة.</p>
+                <div class="price-row"><span class="price">95 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+            <div class="food-card">
+                <div class="img-box"><img src="photo/مونستر بيف برجر.jfif" alt="مونستر"></div>
+                <h3>مونستر بيف برجر</h3>
+                <p>200 جرام لحم بلدي مع جبن وبصل مكرمل.</p>
+                <div class="price-row"><span class="price">120 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+        </div>
+
+        <!-- قسم المشويات -->
+        <h2 class="category-title" id="grill">قسم المشويات على الفحم</h2>
+        <div class="menu-grid">
+            <div class="food-card">
+                <div class="img-box"><img src="photo/كباب.jfif" alt="كباب"></div>
+                <h3>كباب على الفحم</h3>
+                <p>لحم بلدي فاخر مشوي بالخلطة السرية.</p>
+                <div class="price-row"><span class="price">320 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+            <div class="food-card">
+                <div class="img-box"><img src="photo/كفتة مشوية.jfif" alt="كفتة"></div>
+                <h3>كفتة مشوية</h3>
+                <p>كفتة بلدي متبلة بالبهارات الرائعة.</p>
+                <div class="price-row"><span class="price">220 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+            <div class="food-card">
+                <div class="img-box"><img src="photo/طرب ضانى.jfif" alt="طرب"></div>
+                <h3>طرب ضأني</h3>
+                <p>طرب غني مشوي ومتبل بذكاء.</p>
+                <div class="price-row"><span class="price">280 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+        </div>
+
+        <!-- قسم الحلويات -->
+        <h2 class="category-title" id="dessert">ركن الحلويات الفاخرة</h2>
+        <div class="menu-grid">
+            <div class="food-card">
+                <div class="img-box"><img src="photo/بقلاوة بة الفستق.jfif" alt="بقلاوة"></div>
+                <h3>بقلاوة بالفستق الملكي</h3>
+                <p>رقائق من العجين الهش بالفستق والعسل.</p>
+                <div class="price-row"><span class="price">180 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+            <div class="food-card">
+                <div class="img-box"><img src="photo/كنافة بة القشطة البلدى.jfif" alt="كنافة"></div>
+                <h3>كنافة بالقشطة البلدية</h3>
+                <p>كنافة بالسمن البلدي والقشطة الغنية.</p>
+                <div class="price-row"><span class="price">120 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+            <div class="food-card">
+                <div class="img-box"><img src="photo/تشيز كيك ريد فيلفت.jfif" alt="تشيز كيك"></div>
+                <h3>تشيز كيك ريد فيلفيت</h3>
+                <p>قوام كريمي فاخر ولمسة ريد فيلفيت.</p>
+                <div class="price-row"><span class="price">65 ج.م</span><a href="" class="btn-order">اطلب</a></div>
+            </div>
+        </div>
+
+    </div>
+
+    <a href="   " class="whatsapp-fixed" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <footer>
+        <p>تصميم المبرمج أحمد حسن &copy; 2026 | أبو كيان - المنيو الكامل</p>
+    </footer>
+
+    <script>
+        function toggleMode() {
+            const body = document.body;
+            const btnText = document.getElementById('btn-text');
+            const btnIcon = document.getElementById('btn-icon');
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                btnText.innerText = "Dark Mode"; btnIcon.innerText = "🌙";
+            } else {
+                btnText.innerText = "Night Mode"; btnIcon.innerText = "☀️";
+            }
+        }
+    </script>
+</body>
+</html>
