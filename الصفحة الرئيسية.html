@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- استيراد الخطوط والأيقونات -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" type="image/jpeg" href="photo (3).jpg">
+    <link rel="icon" type="image/jpeg" href="لوجو ابو كيان.jpg">
     <title>ابو كيان - الصفحة الرئيسية</title>
     
     <style>
@@ -146,7 +145,7 @@
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 30px;
         }
 
@@ -155,6 +154,8 @@
             border-radius: 20px;
             overflow: hidden;
             box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
         }
 
         .food-img {
@@ -164,14 +165,83 @@
             background-position: center;
         }
 
-        .food-info { padding: 20px; }
-        .food-info h3 { margin-bottom: 10px; }
-        .food-info .price { color: var(--primary-orange); font-size: 1.4rem; font-weight: 700; }
+        .food-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .food-info h3 { margin-bottom: 10px; color: var(--dark-brown); }
+        
+        .ingredients-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .options-section {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .option-label {
+            display: block;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--primary-orange);
+        }
+
+        .size-selector {
+            width: 100%;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-family: 'Tajawal';
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        .extra-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+
+        .extra-name { font-size: 0.85rem; font-weight: bold; }
+
+        .counter-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .counter-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary-orange);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            user-select: none;
+        }
+
+        .counter-btn:hover { background: var(--dark-brown); }
+        .count-num { font-weight: bold; font-size: 1rem; min-width: 20px; text-align: center; }
+
+        .food-info .price { color: var(--primary-orange); font-size: 1.4rem; font-weight: 700; margin-top: auto; }
         
         .add-to-cart {
             margin-top: 15px;
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 2px solid var(--primary-orange);
             background: none;
             color: var(--primary-orange);
@@ -203,18 +273,16 @@
 <body>
 
     <nav>
-        <a href="index.html" class="logo">
+        <a href="" class="logo">
             <i class="fas fa-utensils"></i>
             <span>مطعم ابو كيان</span>
         </a>
         <ul class="nav-links">
             <li><a href="#hero">الرئيسية</a></li>
             <li><a href="#categories">الأصناف</a></li>
-            <!-- تم التغيير هنا -->
            <li><a href="قائمة الطعام.html">قائمة الطعام</a></li>
             <li><a href="صفحة تواصل معنا.html">تواصل معنا</a></li>
         </ul>
-        <!-- تم التغيير هنا -->
         <a href="قائمة الطعام.html" class="cart-box">
             <i class="fas fa-shopping-basket"></i>
             <span>طلب الآن</span>
@@ -224,34 +292,28 @@
     <section class="hero" id="hero">
         <h1>مستعد لرحلة ممتعة في عالم التذوق؟</h1>
         <p>أفضل المأكولات العالمية والشرقية بتوصيل سريع حتى باب منزلك</p>
-        <!-- تم التغيير هنا -->
         <a href="قائمة الطعام.html" class="btn">استعرض قائمة الطعام</a>
     </section>
 
     <section class="categories" id="categories">
         <h2>اختر صنفك المفضل</h2>
         <div class="categories-grid">
-            
             <a href="صفحة بيتزا ومعجنات.html" class="category-card">
                 <i class="fas fa-pizza-slice"></i>
                 <p>بيتزا ومعجنات</p>
             </a>
-
             <a href="برجر ووجبات سريعة.html" class="category-card">
                 <i class="fas fa-hamburger"></i>
                 <p>برجر ووجبات سريعة</p>
             </a>
-
             <a href="صفحة المشويات.html" class="category-card">
                 <i class="fas fa-drumstick-bite"></i>
                 <p>مشويات ابو كيان</p>
             </a>
-
             <a href="صفحة الحلويات.html" class="category-card">
                 <i class="fas fa-ice-cream"></i>
                 <p>ركن الحلويات</p>
             </a>
-            
         </div>
     </section>
 
@@ -259,33 +321,143 @@
         <h2 class="menu-title">أطباق مميزة</h2>
         <div class="menu-grid">
             
+            <!-- بيتزا إيطالية فاخرة -->
             <div class="food-card">
                 <div class="food-img" style="background-image: url('photo/صور بيتزا (2).jfif');"></div>
                 <div class="food-info">
                     <h3>بيتزا إيطالية فاخرة</h3>
-                    <p>خضروات طازجة مع أجبان إيطالية أصلية.</p>
+                    <p class="ingredients-text">المكونات: عجينة إيطالية، صلصة طماطم، جبن موزاريلا، خضروات طازجة.</p>
+                    <div class="options-section">
+                        <label class="option-label">الأحجام:</label>
+                        <select class="size-selector">
+                            <option>صغير - 85 جنيه</option>
+                            <option>وسط - 110 جنيه</option>
+                            <option>كبير - 200 جنيه</option>
+                        </select>
+                        
+                        <label class="option-label">الإضافات:</label>
+                        <div class="extra-row">
+                            <span class="extra-name">باربيكيو</span>    
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-name">جبنة زيادة</span>    
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-name">كاتشب ومايونيز</span>    
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-name">كاتشب</span>    
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-name">مايونيز</span>    
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                    </div>
                     <span class="price">85 جنيه</span>
-                    <button class="add-to-cart" onclick="location.href='صفحة بيتزا ومعجنات.html'">التفاصيل</button>
+                    <button class="add-to-cart">أضف للسلة</button>
                 </div>
             </div>
 
+            <!-- كلاسيك تشيز برجر -->
             <div class="food-card">
                 <div class="food-img" style="background-image: url('photo/برجر.jfif');"></div>
                 <div class="food-info">
                     <h3>كلاسيك تشيز برجر</h3>
-                    <p>برجر مشوي، خس، طماطم، صوص الخردل.</p>
+                    <p class="ingredients-text">المكونات: لحم بقري، جبن شيدر، بصل مكرمل، مخلل.</p>
+                    <div class="options-section">
+                        <label class="option-label">النوع:</label>
+                        <select class="size-selector">
+                            <option>ساندوتش - 220 جنيه</option>
+                            <option>وجبة - 260 جنيه</option>
+                        </select>
+                        <label class="option-label">الإضافات:</label>
+                        <div class="extra-row">
+                            <span class="extra-name">جبنة زيادة</span>
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                    </div>
                     <span class="price">220 جنيه</span>
-                    <button class="add-to-cart" onclick="location.href='برجر ووجبات سريعة.html'">التفاصيل</button>
+                    <button class="add-to-cart">أضف للسلة</button>
                 </div>
             </div>
 
+            <!-- كفتة مشوية على السيخ -->
             <div class="food-card">
                 <div class="food-img" style="background-image: url('photo/كفتة.jfif');"></div>
                 <div class="food-info">
                     <h3>كفتة مشوية على السيخ</h3>
-                    <p>كفتة بلدي مدخنة برائحة الفحم مع بقدونس وبصل.</p>
+                    <p class="ingredients-text">المكونات: كفتة بلدي مدخنة، بهارات، بقدونس، بصل.</p>
+                    <div class="options-section">
+                        <label class="option-label">الكمية:</label>
+                        <select class="size-selector">
+                            <option>ربع كيلو - 250 جنيه</option>
+                            <option>نصف كيلو - 480 جنيه</option>
+                            <option>كيلو - 900 جنيه</option>
+                        </select>
+                        <label class="option-label">المقبلات والسلطات:</label>
+                        <div class="extra-row">
+                            <span class="extra-name">سلطة خضراء</span>
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-name">سلطة جرجير</span>
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-name">سلطة زبادي (خيار باللبن)</span>
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div class="extra-row">
+                            <span class="extra-name">التبولة</span>
+                            <div class="counter-box">
+                                <button class="counter-btn minus">-</button>
+                                <span class="count-num">0</span>
+                                <button class="counter-btn plus">+</button>
+                            </div>
+                        </div>
+                    </div>
                     <span class="price">250 جنيه</span>
-                    <button class="add-to-cart" onclick="location.href='صفحة المشويات.html'">التفاصيل</button>
+                    <button class="add-to-cart">أضف للسلة</button>
                 </div>
             </div>
 
@@ -301,10 +473,31 @@
         </div>
         <p>تصميم مبرمج أحمد حسن © 2026</p>
         <p>إيميل: ahmed.adelgin@gmail.com | واتساب: 01122278442</p>
-        <div style="margin-top: 15px;">
-            <a href="صفحة تواصل معنا.html" style="color: var(--primary-orange); text-decoration: none;">تواصل معنا الآن</a>
-        </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const counterBoxes = document.querySelectorAll('.counter-box');
+
+            counterBoxes.forEach(box => {
+                const plusBtn = box.querySelector('.plus');
+                const minusBtn = box.querySelector('.minus');
+                const countDisplay = box.querySelector('.count-num');
+
+                plusBtn.addEventListener('click', () => {
+                    let currentVal = parseInt(countDisplay.innerText);
+                    countDisplay.innerText = currentVal + 1;
+                });
+
+                minusBtn.addEventListener('click', () => {
+                    let currentVal = parseInt(countDisplay.innerText);
+                    if (currentVal > 0) {
+                        countDisplay.innerText = currentVal - 1;
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
