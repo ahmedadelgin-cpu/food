@@ -43,7 +43,6 @@
             padding-bottom: 60px;
         }
 
-        /* الناف بار الفاخر */
         .checkout-nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(12px);
@@ -82,7 +81,6 @@
         }
         .back-link:hover { background: var(--primary-light); color: var(--primary); }
 
-        /* شريط خطوات الطلب 2026 */
         .steps-bar {
             max-width: 700px;
             margin: 30px auto 20px;
@@ -143,7 +141,6 @@
         .step-text { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
         .step-item.active .step-text { color: var(--primary); font-weight: 800; }
 
-        /* الشبكة الرئيسية */
         .checkout-grid {
             max-width: 1200px;
             margin: 20px auto;
@@ -189,7 +186,6 @@
 
         .section-header h2 { font-size: 1.25rem; font-weight: 800; color: var(--dark); }
 
-        /* نموذج البيانات */
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -209,7 +205,7 @@
             gap: 5px;
         }
 
-        .form-group input, .form-group textarea, .form-group select {
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 13px 16px;
             border-radius: var(--radius-md);
@@ -227,7 +223,6 @@
             box-shadow: 0 0 0 4px rgba(255, 126, 0, 0.12);
         }
 
-        /* طرق الدفع المتطورة */
         .payment-methods-grid {
             display: flex;
             flex-direction: column;
@@ -244,7 +239,6 @@
             cursor: pointer;
             transition: var(--transition);
             background: white;
-            position: relative;
         }
 
         .pay-card:hover { border-color: #cbd5e1; transform: translateY(-2px); }
@@ -285,7 +279,6 @@
             color: #475569;
         }
 
-        /* تفاصيل طريقة الدفع المنسدلة */
         .pay-instruction-box {
             background: white;
             border: 1.5px dashed var(--primary);
@@ -319,7 +312,6 @@
         }
         .copy-wallet-btn:hover { background: var(--primary); }
 
-        /* ملخص الطلب والفاتورة */
         .order-summary-sidebar {
             position: sticky;
             top: 95px;
@@ -354,7 +346,6 @@
         .meal-extras { font-size: 0.78rem; color: var(--text-muted); }
         .meal-price { font-weight: 800; color: var(--primary); font-size: 0.95rem; }
 
-        /* كوبون الخصم */
         .promo-box {
             display: flex;
             gap: 8px;
@@ -386,7 +377,6 @@
         }
         .promo-btn:hover { background: var(--primary); }
 
-        /* الفاتورة */
         .bill-row {
             display: flex;
             justify-content: space-between;
@@ -408,7 +398,6 @@
 
         .bill-row.total-row span:last-child { color: var(--primary); }
 
-        /* زر التأكيد الكبير */
         .btn-confirm-order {
             width: 100%;
             padding: 16px;
@@ -431,10 +420,8 @@
         .btn-confirm-order:hover {
             background: #1ebc59;
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
         }
 
-        /* كارت تتبع الواتساب 2026 */
         .whatsapp-tracking-box {
             background: linear-gradient(135deg, #f0fdf4 0%, #e8f8ee 100%);
             border: 1.5px solid #bbf7d0;
@@ -493,40 +480,57 @@
             background: white;
             width: 90%;
             max-width: 480px;
-            padding: 40px 30px;
+            padding: 35px 25px;
             border-radius: 25px;
             text-align: center;
             box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-            animation: zoomUp 0.35s ease;
+            animation: zoomUp 0.3s ease;
         }
 
         @keyframes zoomUp {
-            from { transform: scale(0.85); opacity: 0; }
+            from { transform: scale(0.9); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
 
         .success-check-circle {
-            width: 80px;
-            height: 80px;
+            width: 75px;
+            height: 75px;
             background: #dcfce7;
             color: #16a34a;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.8rem;
-            margin: 0 auto 20px;
+            font-size: 2.6rem;
+            margin: 0 auto 15px;
         }
 
         .order-badge-pill {
             display: inline-block;
-            background: #f1f5f9;
-            padding: 6px 16px;
+            background: #fff3e6;
+            padding: 6px 18px;
             border-radius: 50px;
             font-weight: 800;
             color: var(--primary);
-            margin: 10px 0 15px;
-            font-size: 0.95rem;
+            margin: 8px 0 12px;
+            font-size: 1rem;
+            border: 1px dashed var(--primary);
+        }
+
+        .btn-modal-action {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
         }
 
         @media (max-width: 900px) {
@@ -538,7 +542,6 @@
 </head>
 <body>
 
-    <!-- الناف بار -->
     <nav class="checkout-nav">
         <a href="index.html" class="logo">
             <i class="fas fa-utensils"></i> مطعم أبو كيان
@@ -548,7 +551,6 @@
         </a>
     </nav>
 
-    <!-- شريط الخطوات الذكي 2026 -->
     <div class="steps-bar">
         <div class="step-item completed">
             <div class="step-icon"><i class="fas fa-shopping-basket"></i></div>
@@ -564,13 +566,10 @@
         </div>
     </div>
 
-    <!-- المحتوى الرئيسي -->
     <div class="checkout-grid">
         
-        <!-- قسم الإدخال -->
         <div class="checkout-main-content">
             
-            <!-- 1. بيانات العميل والتوصيل -->
             <div class="card-box">
                 <div class="section-header">
                     <i class="fas fa-map-marker-alt"></i>
@@ -595,17 +594,16 @@
 
                     <div class="form-group full">
                         <label>العنوان بالتفصيل <span style="color: red;">*</span></label>
-                        <input type="text" id="custAddress" placeholder="المنطقة - الشارع - رقم العقار - رقم الشقة والعلامة المميزة" required>
+                        <input type="text" id="custAddress" placeholder="المنطقة - الشارع - رقم العقار - رقم الشقة" required>
                     </div>
 
                     <div class="form-group full">
                         <label>ملاحظات إضافية للمطبخ أو المندوب</label>
-                        <textarea id="custNotes" rows="2" placeholder="مثال: بدون بصل، كاتشب ومايونيز زيادة، الاتصال قبل الصعود..."></textarea>
+                        <textarea id="custNotes" rows="2" placeholder="مثال: بدون بصل، كاتشب ومايونيز زيادة..."></textarea>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. جميع أنواع الدفع المتاحة 2026 -->
             <div class="card-box">
                 <div class="section-header">
                     <i class="fas fa-credit-card"></i>
@@ -614,7 +612,6 @@
 
                 <div class="payment-methods-grid">
                     
-                    <!-- 1. كاش عند الاستلام -->
                     <label class="pay-card active" onclick="selectPayment(this, 'cod')">
                         <input type="radio" name="paymentMethod" value="الدفع نقداً عند الاستلام (كاش)" checked class="pay-radio">
                         <div class="pay-icon" style="color: #16a34a;"><i class="fas fa-money-bill-wave"></i></div>
@@ -626,10 +623,9 @@
 
                     <div class="pay-instruction-box" id="codDetails" style="display: block;">
                         <label style="font-weight: 700; display: block; margin-bottom: 5px;">هل تحتاج فكة من مبلغ معين؟</label>
-                        <input type="text" id="codChange" placeholder="مثال: معي ورقة 500 جنيه ومحتاج الباقي..." style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px;">
+                        <input type="text" id="codChange" placeholder="مثال: معي 500 جنيه ومحتاج الباقي..." style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px;">
                     </div>
 
-                    <!-- 2. فودافون كاش ومحافظ المحمول -->
                     <label class="pay-card" onclick="selectPayment(this, 'wallet')">
                         <input type="radio" name="paymentMethod" value="محفظة إلكترونية (فودافون/أورنج/اتصالات/وي كاش)" class="pay-radio">
                         <div class="pay-icon" style="color: var(--vodafone);"><i class="fas fa-mobile-alt"></i></div>
@@ -646,10 +642,8 @@
                         <button type="button" class="copy-wallet-btn" onclick="copyNumber('01122278442')">
                             <i class="fas fa-copy"></i> نسخ الرقم
                         </button>
-                        <p style="margin-top: 8px; font-size: 0.8rem; color: #666;">* بعد التحويل، يرجى إرسال لقطة شاشة للإيصال في محادثة الواتساب لتأكيد الطلب فورياً.</p>
                     </div>
 
-                    <!-- 3. إنستاباي InstaPay -->
                     <label class="pay-card" onclick="selectPayment(this, 'instapay')">
                         <input type="radio" name="paymentMethod" value="إنستاباي (InstaPay Egypt)" class="pay-radio">
                         <div class="pay-icon" style="color: var(--instapay);"><i class="fas fa-bolt"></i></div>
@@ -667,7 +661,6 @@
                         </button>
                     </div>
 
-                    <!-- 4. بطاقة بنكية (فيزا مع المندوب) -->
                     <label class="pay-card" onclick="selectPayment(this, 'card')">
                         <input type="radio" name="paymentMethod" value="بطاقة بنكية (فيزا/ماستركارد مع المندوب)" class="pay-radio">
                         <div class="pay-icon" style="color: #2563eb;"><i class="fas fa-credit-card"></i></div>
@@ -682,7 +675,6 @@
 
         </div>
 
-        <!-- ملخص الطلب والجانب الأيسر -->
         <div class="order-summary-sidebar">
             
             <div class="card-box">
@@ -693,13 +685,11 @@
 
                 <div class="summary-meals-list" id="mealsList"></div>
 
-                <!-- كوبون الخصم -->
                 <div class="promo-box">
                     <input type="text" id="promoInput" class="promo-input" placeholder="كود الخصم (جرب: KAYAN10)">
                     <button type="button" class="promo-btn" onclick="applyPromo()">تطبيق</button>
                 </div>
 
-                <!-- تفاصيل الحساب -->
                 <div class="bill-row">
                     <span>المجموع الفرعي:</span>
                     <span id="subTotal">0 ج.م</span>
@@ -717,13 +707,11 @@
                     <span id="finalTotal">0 ج.م</span>
                 </div>
 
-                <!-- زر التأكيد -->
                 <button type="button" class="btn-confirm-order" onclick="processOrder()">
-                    <i class="fab fa-whatsapp"></i> تأكيد الطلب والمتابعة لايف
+                    <i class="fab fa-whatsapp"></i> تأكيد الطلب الآن
                 </button>
             </div>
 
-            <!-- كارت توضيح نظام المتابعة عبر واتساب لعام 2026 -->
             <div class="whatsapp-tracking-box">
                 <div class="tracking-header">
                     <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i>
@@ -732,15 +720,15 @@
                 <div class="tracking-steps-list">
                     <div class="tracking-step">
                         <i class="fas fa-check-circle"></i>
-                        <span>1. إرسال وتأكيد تفاصيل الفاتورة مباشرة لمسؤول الفرع.</span>
+                        <span>1. إرسال الفاتورة وتأكيدها تلقائياً بالواتساب.</span>
                     </div>
                     <div class="tracking-step">
                         <i class="fas fa-fire"></i>
-                        <span>2. إشعار فوري عند بدء تحضير الطعام الطازج في المطبخ.</span>
+                        <span>2. إشعار مباشر عند بدء تحضير الوجبة بالمطبخ.</span>
                     </div>
                     <div class="tracking-step">
                         <i class="fas fa-motorcycle"></i>
-                        <span>3. تتبع مندوب التوصيل ورقم هاتفه حتى وصوله لبابك.</span>
+                        <span>3. تتبع وصول المندوب لباب منزلك.</span>
                     </div>
                 </div>
             </div>
@@ -749,28 +737,45 @@
 
     </div>
 
-    <!-- نافذة نجاح الطلب الفاخرة -->
+    <!-- نافذة النجاح مع أزرار الانتقال الفورية والعداد -->
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div class="success-check-circle"><i class="fas fa-check"></i></div>
-            <h2 style="font-weight: 900; color: var(--dark);">تم تسجيل طلبك بنجاح!</h2>
+            <h2 style="font-weight: 900; color: var(--dark); font-size: 1.5rem;">تم تسجيل طلبك بنجاح!</h2>
             <div class="order-badge-pill" id="displayOrderId">رقم الطلب: #AK-0000</div>
-            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
-                جاري توجيهك الآن إلى محادثة الواتساب لبدء التتبع الفوري وتأكيد التوصيل...
+            
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+                تم حفظ وتأكيد طلبك بنجاح!
             </p>
-            <div style="margin-top: 25px;">
-                <a href="index.html" class="back-link" style="display: inline-block;">العودة للموقع الرئيسي</a>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <!-- زر فتح الواتساب -->
+                <a id="btnSuccessWa" href="#" target="_blank" class="btn-modal-action" style="background: var(--whatsapp); color: white;">
+                    <i class="fab fa-whatsapp"></i> فتح محادثة الواتساب
+                </a>
+
+                <!-- زر الرجوع للرئيسية المباشر -->
+                <button type="button" onclick="goToHome()" class="btn-modal-action" style="background: var(--dark); color: white;">
+                    <i class="fas fa-home"></i> العودة للموقع الرئيسي الآن
+                </button>
+
+                <!-- زر شاشة التتبع -->
+                <button type="button" onclick="goToTracking()" class="btn-modal-action" style="background: var(--primary-light); color: var(--primary); border: 1.5px solid var(--primary);">
+                    <i class="fas fa-motorcycle"></i> شاشة تتبع الطلب مباشرة
+                </button>
             </div>
+
+            <p style="font-size: 0.82rem; color: #888; margin-top: 15px;">
+                سيتم تحويلك تلقائياً للصفحة الرئيسية خلال <span id="autoRedirectTimer" style="font-weight: bold; color: var(--primary); font-size: 1rem;">4</span> ثوانٍ...
+            </p>
         </div>
     </div>
 
     <script>
-        // قراءة بيانات السلة من LocalStorage
         let cart = JSON.parse(localStorage.getItem('abu_kayan_cart')) || [];
-        const deliveryFee = 25; // خدمة التوصيل
+        const deliveryFee = 25;
         let discountPercent = 0;
 
-        // عرض منتجات السلة
         function loadSummary() {
             const container = document.getElementById('mealsList');
             container.innerHTML = '';
@@ -812,7 +817,6 @@
             calculateTotals(subtotal);
         }
 
-        // حساب الإجماليات والخصم
         function calculateTotals(subtotal) {
             let discountValue = (subtotal * discountPercent) / 100;
             let grandTotal = subtotal - discountValue + (subtotal > 0 ? deliveryFee : 0);
@@ -829,7 +833,6 @@
             document.getElementById('finalTotal').innerText = `${grandTotal.toFixed(0)} ج.م`;
         }
 
-        // تطبيق كود الخصم
         function applyPromo() {
             const code = document.getElementById('promoInput').value.trim().toUpperCase();
             if (code === 'KAYAN10') {
@@ -839,17 +842,15 @@
             } else if (code === '') {
                 alert('يرجى إدخال كود الخصم.');
             } else {
-                alert('عذراً، كود الخصم غير صالح أو منتهي الصلاحية.');
+                alert('عذراً، كود الخصم غير صالح.');
             }
         }
 
-        // اختيار طريقة الدفع وعرض تفاصيلها
         function selectPayment(cardElement, type) {
             document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('active'));
             cardElement.classList.add('active');
             cardElement.querySelector('.pay-radio').checked = true;
 
-            // إخفاء كل الصناديق
             document.getElementById('codDetails').style.display = 'none';
             document.getElementById('walletDetails').style.display = 'none';
             document.getElementById('instapayDetails').style.display = 'none';
@@ -859,13 +860,20 @@
             if (type === 'instapay') document.getElementById('instapayDetails').style.display = 'block';
         }
 
-        // نسخ رقم التحويل
         function copyNumber(num) {
             navigator.clipboard.writeText(num);
             alert(`تم نسخ الرقم بنجاح: ${num}`);
         }
 
-        // تأكيد الطلب وإرسال رسالة الواتساب 2026
+        // دوال الانتقال الصريحة
+        function goToHome() {
+            window.location.href = 'index.html';
+        }
+
+        function goToTracking() {
+            window.location.href = 'صفحة تتبع الطلب.html';
+        }
+
         function processOrder() {
             if (cart.length === 0) {
                 alert('لا يمكن إتمام الطلب، السلة فارغة!');
@@ -885,7 +893,6 @@
                 return;
             }
 
-            // توليد رقم طلب مميز 2026
             const orderId = 'AK-' + Math.floor(1000 + Math.random() * 9000);
 
             let subtotal = 0;
@@ -903,7 +910,6 @@
             let discountValue = (subtotal * discountPercent) / 100;
             let grandTotal = subtotal - discountValue + deliveryFee;
 
-            // رسالة الواتساب المهيكلة لعام 2026
             let msg = `🌟 *طلب جديد من موقع مطعم أبو كيان* 🌟%0A`;
             msg += `🏷️ *رقم الطلب:* ${orderId}%0A`;
             msg += `-----------------------------------%0A`;
@@ -924,20 +930,42 @@
             msg += `-----------------------------------%0A`;
             msg += `🚀 يرجى تأكيد استلام الطلب وبدء التحضير مع المتابعة المباشرة. شكراً لكم!`;
 
-            // إظهار نافذة النجاح
+            // حفظ تفاصيل الطلب
+            const orderData = {
+                orderId: orderId,
+                name: name,
+                phone: phone,
+                address: address,
+                payment: selectedPay,
+                total: grandTotal.toFixed(0),
+                items: cart
+            };
+            localStorage.setItem('abu_kayan_last_order', JSON.stringify(orderData));
+
+            // تجهيز رابط الواتساب على الزر
+            const waUrl = `https://wa.me/201122278442?text=${msg}`;
+            document.getElementById('btnSuccessWa').href = waUrl;
+
+            // إظهار النافذة
             document.getElementById('displayOrderId').innerText = `رقم الطلب: #${orderId}`;
             document.getElementById('successOverlay').classList.add('active');
 
             // تفريغ السلة
             localStorage.removeItem('abu_kayan_cart');
 
-            // التوجيه للواتساب بعد ثانيتين
-            setTimeout(() => {
-                window.open(`https://wa.me/201122278442?text=${msg}`, '_blank');
-            }, 2000);
+            // عداد تنازلي للتحويل التلقائي للصفحة الرئيسية
+            let timeLeft = 4;
+            const timerEl = document.getElementById('autoRedirectTimer');
+            const countdownInterval = setInterval(() => {
+                timeLeft--;
+                if (timerEl) timerEl.innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    goToHome(); // تحويل فوري لـ index.html
+                }
+            }, 1000);
         }
 
-        // تشغيل التحميل
         loadSummary();
     </script>
 </body>
