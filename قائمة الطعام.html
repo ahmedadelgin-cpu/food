@@ -4,26 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/jpeg" href="لوجو ابو كيان.jpg">
-    <title>قائمة طعام أبو كيان | المنيو الكامل</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <title>قائمة طعام أبو كيان | المنيو الكامل 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #ff4500;
-            --secondary: #ffc300;
-            --bg-color: #121212;
-            --nav-bg: #1a1a1a;
-            --text-color: #f4f4f4;
-            --card-bg: #1e1e1e;
-            --transition: 0.3s;
+            --primary: #ff7e00;
+            --primary-gradient: linear-gradient(135deg, #ff7e00 0%, #ff5100 100%);
+            --dark-brown: #1f140e;
+            --bg-body: #fcfaf8;
+            --card-bg: #ffffff;
+            --border-color: #f1ece8;
+            --danger: #ef4444;
+            --whatsapp: #25d366;
+            --radius-lg: 22px;
+            --radius-md: 14px;
+            --shadow-card: 0 10px 30px rgba(0,0,0,0.05);
+            --shadow-hover: 0 16px 40px rgba(255, 126, 0, 0.15);
+            --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        body.light-mode {
-            --bg-color: #f9f9f9;
-            --nav-bg: #ffffff;
-            --text-color: #1a1a1a;
-            --card-bg: #ffffff;
+        /* الوضع الليلي */
+        body.dark-mode {
+            --bg-body: #120e0b;
+            --card-bg: #1c1511;
+            --border-color: #2b201a;
+            color: #f5ede8;
         }
 
         * {
@@ -35,183 +42,454 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: var(--transition);
+            background-color: var(--bg-body);
+            color: #2b1f1a;
+            transition: background-color var(--transition);
+            overflow-x: hidden;
         }
 
-        /* --- القائمة العلوية المصغرة --- */
+        /* الناف بار الموحد */
         nav {
-            background: var(--nav-bg);
-            height: 55px;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(15px);
+            padding: 14px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 4%;
             position: sticky;
             top: 0;
-            z-index: 2000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border-bottom: 1px solid rgba(255, 126, 0, 0.1);
         }
 
-        .logo { font-size: 1.3rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+        body.dark-mode nav {
+            background: rgba(28, 21, 17, 0.94);
+            border-bottom-color: #33261f;
+        }
 
-        .nav-links { display: flex; list-style: none; gap: 12px; }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 16px;
+            list-style: none;
+        }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-color);
-            font-weight: bold;
-            font-size: 0.75rem;
-            padding: 2px;
+            color: inherit;
+            font-weight: 700;
+            font-size: 0.92rem;
+            padding: 7px 12px;
+            border-radius: 10px;
+            transition: var(--transition);
         }
 
-        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+            background: rgba(255, 126, 0, 0.08);
+        }
 
-        .mode-btn {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 4px 10px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 0.7rem;
+        .nav-actions {
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 12px;
+        }
+
+        .cart-trigger-btn {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 126, 0, 0.3);
+        }
+
+        .cart-trigger-btn:hover { transform: translateY(-2px); }
+
+        .cart-badge {
+            background: white;
+            color: var(--primary);
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
         }
 
         /* هيدر المنيو */
         header.menu-header {
-            padding: 40px 20px;
+            padding: 60px 20px 45px;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200');
+            background: linear-gradient(rgba(20, 10, 5, 0.78), rgba(20, 10, 5, 0.82)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1400');
             background-size: cover;
             background-position: center;
-            border-bottom: 3px solid var(--primary);
+            color: white;
         }
 
-        header h1 { font-size: 2.2rem; color: var(--secondary); margin-bottom: 10px; }
+        header.menu-header h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+            color: #ff9d3b;
+        }
 
-        /* روابط سريعة داخل المنيو */
+        header.menu-header p {
+            font-size: 1.25rem;
+            max-width: 650px;
+            margin: 0 auto 25px;
+            opacity: 0.95;
+        }
+
+        /* روابط التنقل السريع بين الأقسام */
         .quick-nav {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
         .quick-nav a {
-            background: var(--card-bg);
-            padding: 8px 15px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            padding: 9px 22px;
+            border-radius: 30px;
             text-decoration: none;
-            color: var(--text-color);
-            font-size: 0.9rem;
-            border: 1px solid var(--primary);
-            font-weight: bold;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 800;
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: var(--transition);
         }
 
-        /* أقسام المنيو */
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-        
+        .quick-nav a:hover {
+            background: var(--primary-gradient);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1250px;
+            margin: 40px auto;
+            padding: 0 25px;
+        }
+
         .category-title {
             color: var(--primary);
-            font-size: 1.8rem;
-            margin: 50px 0 25px;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 60px 0 30px;
             text-align: center;
-            border-bottom: 2px dashed var(--secondary);
-            display: block;
-            padding-bottom: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .category-title::before, .category-title::after {
+            content: '';
+            height: 2px;
+            width: 70px;
+            background: var(--primary);
+            opacity: 0.4;
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
-        /* كارت الوجبة */
+        /* كروت الأطعمة */
         .food-card {
             background: var(--card-bg);
-            border-radius: 15px;
+            border-radius: var(--radius-lg);
             overflow: hidden;
-            padding: 15px;
-            text-align: center;
-            border-bottom: 3px solid var(--primary);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .food-card:hover {
+            transform: translateY(-7px);
+            box-shadow: var(--shadow-hover);
         }
 
         .img-box {
             width: 100%;
-            height: 180px;
-            margin-bottom: 15px;
+            height: 210px;
             overflow: hidden;
-            border-radius: 10px;
+            position: relative;
         }
 
         .img-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
+            transition: transform 0.5s ease;
         }
 
-        .food-card h3 { color: var(--secondary); margin-bottom: 10px; font-size: 1.3rem; }
-        .food-card p { font-size: 0.85rem; color: #888; margin-bottom: 15px; min-height: 35px; }
+        .food-card:hover .img-box img { transform: scale(1.08); }
+
+        .food-card-info {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .food-card h3 {
+            font-size: 1.35rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: inherit;
+        }
+
+        .food-card p {
+            font-size: 0.88rem;
+            color: #777;
+            margin-bottom: 18px;
+            min-height: 40px;
+            line-height: 1.5;
+        }
 
         .price-row {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             align-items: center;
-            padding-top: 10px;
-            border-top: 1px solid rgba(128,128,128,0.1);
+            padding-top: 15px;
+            border-top: 1px dashed var(--border-color);
+            margin-top: auto;
         }
 
-        .price { font-size: 1.2rem; font-weight: 700; color: var(--secondary); }
-
-        .btn-order {
-            background: var(--primary);
-            color: #fff;
-            padding: 6px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.85rem;
+        .price {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary);
         }
 
-        .whatsapp-fixed {
-            position: fixed;
-            bottom: 25px;
-            left: 25px;
+        .card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-add {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .btn-add:hover { transform: translateY(-2px); }
+
+        .btn-wa-single {
             background: #25d366;
             color: white;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
+            padding: 9px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
-            z-index: 3000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            text-decoration: none;
         }
 
-        footer { text-align: center; padding: 40px; color: #666; font-size: 0.8rem; }
+        /* درج السلة */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .cart-overlay.active { opacity: 1; visibility: visible; }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            left: -440px;
+            width: 420px;
+            max-width: 92%;
+            height: 100%;
+            background: var(--card-bg);
+            z-index: 3000;
+            box-shadow: 10px 0 35px rgba(0,0,0,0.25);
+            display: flex;
+            flex-direction: column;
+            transition: left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .cart-drawer.active { left: 0; }
+
+        .cart-header {
+            padding: 22px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .close-cart-btn { background: none; border: none; font-size: 1.6rem; color: #888; cursor: pointer; }
+
+        .cart-body { flex-grow: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+
+        .cart-item {
+            display: flex;
+            gap: 14px;
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px;
+            position: relative;
+        }
+
+        .cart-item-img {
+            width: 65px;
+            height: 65px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .cart-item-details { flex-grow: 1; }
+        .cart-item-title { font-weight: 800; font-size: 0.95rem; }
+        .cart-item-price { font-weight: 800; color: var(--primary); margin-top: 4px; font-size: 0.92rem; }
+
+        .cart-footer { padding: 22px; border-top: 1px solid var(--border-color); }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .btn-go-checkout {
+            width: 100%;
+            padding: 14px;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+            margin-bottom: 10px;
+        }
+
+        .btn-clear-cart {
+            width: 100%;
+            padding: 11px;
+            background: #fee2e2;
+            color: var(--danger);
+            border: 1px solid #fecaca;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .whatsapp-float-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #25d366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #2d1e16;
+            color: white;
+            padding: 14px 26px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 4000;
+            transform: translateY(120px);
+            opacity: 0;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toast-notification.show { transform: translateY(0); opacity: 1; }
+
+        footer { text-align: center; padding: 50px 20px; color: #888; font-size: 0.9rem; border-top: 1px solid var(--border-color); }
 
         @media (max-width: 900px) {
             .nav-links { display: none; }
+            header.menu-header h1 { font-size: 2.3rem; }
+            .cart-drawer { width: 100%; max-width: 100%; left: -100%; }
         }
     </style>
 </head>
-<body class="dark-mode">
+<body>
 
-    <!-- الناف بار: تم ربط اللوجو وزر "الرئيسية" بـ index.html -->
+    <!-- الناف بار الموحد الشامل -->
     <nav>
-        <a href="index.html" class="logo">أبو كيان</a>
+        <a href="index.html" class="logo">
+            <i class="fas fa-utensils"></i> أبو كيان
+        </a>
+
         <ul class="nav-links">
             <li><a href="index.html">الرئيسية</a></li>
             <li><a href="قائمة الطعام.html" class="active">قائمة الطعام</a></li>
@@ -219,137 +497,403 @@
             <li><a href="صفحة بيتزا ومعجنات.html">بيتزا ومعجنات</a></li>
             <li><a href="صفحة المشويات.html">المشويات</a></li>
             <li><a href="صفحة الحلويات.html">الحلويات</a></li>
+            <li><a href="صفحة الدفع.html" style="color: #25d366;"><i class="fas fa-credit-card"></i> إتمام الدفع</a></li>
+            <li><a href="صفحة تتبع الطلب.html" style="color: var(--primary);"><i class="fas fa-motorcycle"></i> تتبع طلبك</a></li>
             <li><a href="صفحة تواصل معنا.html">تواصل معنا</a></li>
         </ul>
-        <button class="mode-btn" onclick="toggleMode()" id="mode-toggle">
-            <span id="btn-text">Night Mode</span> <span id="btn-icon">☀️</span>
-        </button>
+
+        <div class="nav-actions">
+            <button class="cart-trigger-btn" id="openCartBtn">
+                <i class="fas fa-shopping-basket"></i>
+                <span>السلة</span>
+                <span class="cart-badge" id="cartCount">0</span>
+            </button>
+        </div>
     </nav>
 
     <header class="menu-header">
         <h1>المنيو الكامل - مطعم أبو كيان</h1>
+        <p>تصفح جميع أقسامنا الفاخرة وأضف وجباتك المفضلة مباشرة إلى السلة</p>
         <div class="quick-nav">
-            <a href="#pizza">🍕 البيتزا</a>
-            <a href="#burger">🍔 البرجر</a>
-            <a href="#grill">🍖 المشويات</a>
-            <a href="#dessert">🍰 الحلويات</a>
+            <a href="#pizza">🍕 البيتزا والمعجنات</a>
+            <a href="#burger">🍔 البرجر والوجبات</a>
+            <a href="#grill">🍖 المشويات الشرقية</a>
+            <a href="#dessert">🍰 الحلويات الفاخرة</a>
         </div>
     </header>
 
     <div class="container">
         
         <!-- قسم البيتزا -->
-        <h2 class="category-title" id="pizza">ركن البيتزا والمعجنات</h2>
+        <h2 class="category-title" id="pizza">🍕 ركن البيتزا والمعجنات</h2>
         <div class="menu-grid">
             <div class="food-card">
                 <div class="img-box"><img src="photo/صور بيتزا (2).jfif" alt="مارجريتا"></div>
-                <h3>بيتزا مارجريتا</h3>
-                <p>صوص طماطم إيطالي مع جبنة موتزاريلا وريحان.</p>
-                <div class="price-row"><span class="price">90 ج.م</span><a href="https://wa.me/201122278442?text=طلب بيتزا مارجريتا" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>بيتزا مارجريتا</h3>
+                    <p>صوص طماطم إيطالي فاخر مع جبنة موتزاريلا وريحان طازج.</p>
+                    <div class="price-row">
+                        <span class="price">90 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('pizza-margherita', 'بيتزا مارجريتا', 90, 'photo/صور بيتزا (2).jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب بيتزا مارجريتا" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="food-card">
                 <div class="img-box"><img src="photo/صور بيتزا (3).jfif" alt="رانش"></div>
-                <h3>تشيكن رانش</h3>
-                <p>دجاج، صوص رانش فاخر، زيتون، وفلفل.</p>
-                <div class="price-row"><span class="price">145 ج.م</span><a href="https://wa.me/201122278442?text=طلب بيتزا تشيكن رانش" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>تشيكن رانش</h3>
+                    <p>قطع دجاج متبلة، صوص رانش غني، زيتون أسود، وفلفل رومي طازج.</p>
+                    <div class="price-row">
+                        <span class="price">145 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('pizza-ranch', 'بيتزا تشيكن رانش', 145, 'photo/صور بيتزا (3).jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب بيتزا تشيكن رانش" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="food-card">
                 <div class="img-box"><img src="photo/منقوشة.jfif" alt="منقوشة"></div>
-                <h3>منقوشة لحم بالجبن</h3>
-                <p>لحم متبل بالجبن على عجين طازج.</p>
-                <div class="price-row"><span class="price">65 ج.م</span><a href="https://wa.me/201122278442?text=طلب منقوشة لحم بالجبن" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>منقوشة لحم بالجبن</h3>
+                    <p>لحم مفروم بلدي متبل مع مزيج رائع من الأجبان على عجين طازج.</p>
+                    <div class="price-row">
+                        <span class="price">65 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('manoushe-meat', 'منقوشة لحم بالجبن', 65, 'photo/منقوشة.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب منقوشة لحم بالجبن" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- قسم البرجر -->
-        <h2 class="category-title" id="burger">ركن البرجر والوجبات</h2>
+        <h2 class="category-title" id="burger">🍔 ركن البرجر والوجبات السريعة</h2>
         <div class="menu-grid">
             <div class="food-card">
-                <div class="img-box"><img src="photo/كرانشي تشيكن.jfif" alt="تشيكن"></div>
-                <h3>كرانشي تشيكن ميل</h3>
-                <p>صدور مقرمشة حارة، بطاطس صمول وثومية.</p>
-                <div class="price-row"><span class="price">110 ج.م</span><a href="https://wa.me/201122278442?text=طلب كرانشي تشيكن ميل" class="btn-order">اطلب</a></div>
+                <div class="img-box"><img src="photo/كرانشي تشيكن.jfif" alt="كرانشي تشيكن"></div>
+                <div class="food-card-info">
+                    <h3>كرانشي تشيكن ميل</h3>
+                    <p>صدور دجاج مقرمشة حارة تقدم مع بطاطس فارم فريتس وصوص تكساس.</p>
+                    <div class="price-row">
+                        <span class="price">110 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('burger-crunchy', 'كرانشي تشيكن ميل', 110, 'photo/كرانشي تشيكن.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب كرانشي تشيكن ميل" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="food-card">
-                <div class="img-box"><img src="photo/تشيكن كلاسيك.jfif" alt="كلاسيك"></div>
-                <h3>كلاسيك تشيز برجر</h3>
-                <p>برجر مشوي، خس، صوص خردل، وضعف جبنة.</p>
-                <div class="price-row"><span class="price">95 ج.م</span><a href="https://wa.me/201122278442?text=طلب كلاسيك تشيز برجر" class="btn-order">اطلب</a></div>
+                <div class="img-box"><img src="photo/تشيكن كلاسيك.jfif" alt="كلاسيك تشيز برجر"></div>
+                <div class="food-card-info">
+                    <h3>كلاسيك تشيز برجر</h3>
+                    <p>برجر مشوي على الفحم مع خس وصوص خردل وشريحة جبنة شيدر مضاعفة.</p>
+                    <div class="price-row">
+                        <span class="price">95 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('burger-classic', 'كلاسيك تشيز برجر', 95, 'photo/تشيكن كلاسيك.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب كلاسيك تشيز برجر" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="food-card">
-                <div class="img-box"><img src="photo/مونستر بيف برجر.jfif" alt="مونستر"></div>
-                <h3>مونستر بيف برجر</h3>
-                <p>200 جرام لحم بلدي مع جبن وبصل مكرمل.</p>
-                <div class="price-row"><span class="price">120 ج.م</span><a href="https://wa.me/201122278442?text=طلب مونستر بيف برجر" class="btn-order">اطلب</a></div>
+                <div class="img-box"><img src="photo/مونستر بيف برجر.jfif" alt="مونستر بيف"></div>
+                <div class="food-card-info">
+                    <h3>مونستر بيف برجر</h3>
+                    <p>200 جرام لحم بلدي فاخر مع جبن وبصل مكرمل وبيكون بقري مدخن.</p>
+                    <div class="price-row">
+                        <span class="price">120 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('burger-monster', 'مونستر بيف برجر', 120, 'photo/مونستر بيف برجر.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب مونستر بيف برجر" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- قسم المشويات -->
-        <h2 class="category-title" id="grill">قسم المشويات على الفحم</h2>
+        <h2 class="category-title" id="grill">🍖 قسم المشويات على الفحم</h2>
         <div class="menu-grid">
             <div class="food-card">
                 <div class="img-box"><img src="photo/كباب.jfif" alt="كباب"></div>
-                <h3>كباب على الفحم</h3>
-                <p>لحم بلدي فاخر مشوي بالخلطة السرية.</p>
-                <div class="price-row"><span class="price">320 ج.م</span><a href="https://wa.me/201122278442?text=طلب كباب على الفحم" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>كباب على الفحم</h3>
+                    <p>لحم ضأن وبلدي فاخر مشوي بالخلطة السرية على الفحم مباشرة.</p>
+                    <div class="price-row">
+                        <span class="price">320 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('grill-kebab', 'كباب على الفحم', 320, 'photo/كباب.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب كباب على الفحم" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="food-card">
                 <div class="img-box"><img src="photo/كفتة مشوية.jfif" alt="كفتة"></div>
-                <h3>كفتة مشوية</h3>
-                <p>كفتة بلدي متبلة بالبهارات الرائعة.</p>
-                <div class="price-row"><span class="price">220 ج.م</span><a href="https://wa.me/201122278442?text=طلب كفتة مشوية" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>كفتة مشوية</h3>
+                    <p>كفتة بلدي متبلة بالبهارات الخاصة وتقدم مع الخبز البلدي والطحينة.</p>
+                    <div class="price-row">
+                        <span class="price">220 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('grill-kofta', 'كفتة مشوية', 220, 'photo/كفتة مشوية.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب كفتة مشوية" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="food-card">
                 <div class="img-box"><img src="photo/طرب ضانى.jfif" alt="طرب"></div>
-                <h3>طرب ضأني</h3>
-                <p>طرب غني مشوي ومتبل بذكاء.</p>
-                <div class="price-row"><span class="price">280 ج.م</span><a href="https://wa.me/201122278442?text=طلب طرب ضاني" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>طرب ضأني</h3>
+                    <p>طرب غني مشوي في منديل الضأن المتبل بنكهة شرقية أصيلة.</p>
+                    <div class="price-row">
+                        <span class="price">280 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('grill-tarb', 'طرب ضأني', 280, 'photo/طرب ضانى.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب طرب ضاني" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- قسم الحلويات -->
-        <h2 class="category-title" id="dessert">ركن الحلويات الفاخرة</h2>
+        <h2 class="category-title" id="dessert">🍰 ركن الحلويات الفاخرة</h2>
         <div class="menu-grid">
             <div class="food-card">
                 <div class="img-box"><img src="photo/بقلاوة بة الفستق.jfif" alt="بقلاوة"></div>
-                <h3>بقلاوة بالفستق الملكي</h3>
-                <p>رقائق من العجين الهش بالفستق والعسل.</p>
-                <div class="price-row"><span class="price">180 ج.م</span><a href="https://wa.me/201122278442?text=طلب بقلاوة بالفستق الملكي" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>بقلاوة بالفستق الملكي</h3>
+                    <p>رقائق من العجين الهش محشوة بأجود أنواع الفستق ومعززة بالعسل الطبيعي.</p>
+                    <div class="price-row">
+                        <span class="price">180 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('dessert-baklava', 'بقلاوة بالفستق الملكي', 180, 'photo/بقلاوة بة الفستق.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب بقلاوة بالفستق" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="food-card">
                 <div class="img-box"><img src="photo/كنافة بة القشطة البلدى.jfif" alt="كنافة"></div>
-                <h3>كنافة بالقشطة البلدية</h3>
-                <p>كنافة بالسمن البلدي والقشطة الغنية.</p>
-                <div class="price-row"><span class="price">120 ج.م</span><a href="https://wa.me/201122278442?text=طلب كنافة بالقشطة البلدية" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>كنافة بالقشطة البلدية</h3>
+                    <p>كنافة بالسمن البلدي محشوة بالقشطة الغنية الطازجة تقدم ساخنة ومقرمشة.</p>
+                    <div class="price-row">
+                        <span class="price">120 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('dessert-kunafa', 'كنافة بالقشطة البلدية', 120, 'photo/كنافة بة القشطة البلدى.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب كنافة بالقشطة" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="food-card">
                 <div class="img-box"><img src="photo/تشيز كيك ريد فيلفت.jfif" alt="تشيز كيك"></div>
-                <h3>تشيز كيك ريد فيلفيت</h3>
-                <p>قوام كريمي فاخر ولمسة ريد فيلفيت.</p>
-                <div class="price-row"><span class="price">65 ج.م</span><a href="https://wa.me/201122278442?text=طلب تشيز كيك ريد فيلفيت" class="btn-order">اطلب</a></div>
+                <div class="food-card-info">
+                    <h3>تشيز كيك ريد فيلفيت</h3>
+                    <p>قوام كريمي فاخر ولمسة ريد فيلفيت مميزة مع صوص الفراولة الطازج.</p>
+                    <div class="price-row">
+                        <span class="price">65 ج.م</span>
+                        <div class="card-actions">
+                            <button class="btn-add" onclick="quickAdd('dessert-cheesecake', 'تشيز كيك ريد فيلفيت', 65, 'photo/تشيز كيك ريد فيلفت.jfif')">
+                                <i class="fas fa-cart-plus"></i> أضف للسلة
+                            </button>
+                            <a href="https://wa.me/201122278442?text=طلب تشيز كيك" class="btn-wa-single" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
 
-    <a href="https://wa.me/201122278442" class="whatsapp-fixed" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <!-- درج السلة المنزلق المشترك -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-bag" style="color: var(--primary);"></i> سلة طلباتك</h3>
+            <button class="close-cart-btn" id="closeCartBtn">&times;</button>
+        </div>
+        
+        <div class="cart-body" id="cartItemsContainer"></div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>الإجمالي:</span>
+                <span style="color: var(--primary);" id="cartTotalPrice">0 ج.م</span>
+            </div>
+            
+            <!-- زر الانتقال لصفحة الدفع -->
+            <a href="صفحة الدفع.html" class="btn-go-checkout">
+                <i class="fas fa-credit-card"></i> متابعة الشراء والدفع 💳
+            </a>
+
+            <!-- زر مسح السلة -->
+            <button class="btn-clear-cart" id="clearCartBtn" onclick="clearFullCart()">
+                <i class="fas fa-trash-alt"></i> مسح السلة بالكامل
+            </button>
+        </div>
+    </div>
+
+    <!-- زر الواتساب العائم -->
+    <a href="https://wa.me/201122278442" class="whatsapp-float-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- إشعار إضافة الصنف -->
+    <div class="toast-notification" id="toast">
+        <i class="fas fa-check-circle" style="color: #25d366; font-size: 1.2rem;"></i>
+        <span id="toastMsg">تمت إضافة الصنف إلى السلة!</span>
+    </div>
 
     <footer>
-        <p>تصميم المبرمج أحمد حسن &copy; 2026 | أبو كيان - المنيو الكامل</p>
+        <p>تصميم مبرمج أحمد حسن © 2026 | مطعم أبو كيان - المنيو الكامل</p>
     </footer>
 
+    <!-- جافاسكريبت السلة المشتركة -->
     <script>
-        function toggleMode() {
-            const body = document.body;
-            const btnText = document.getElementById('btn-text');
-            const btnIcon = document.getElementById('btn-icon');
-            body.classList.toggle('light-mode');
-            if (body.classList.contains('light-mode')) {
-                btnText.innerText = "Dark Mode"; btnIcon.innerText = "🌙";
-            } else {
-                btnText.innerText = "Night Mode"; btnIcon.innerText = "☀️";
-            }
+        let cart = JSON.parse(localStorage.getItem('abu_kayan_cart')) || [];
+
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const openCartBtn = document.getElementById('openCartBtn');
+        const closeCartBtn = document.getElementById('closeCartBtn');
+        const cartItemsContainer = document.getElementById('cartItemsContainer');
+        const cartTotalPrice = document.getElementById('cartTotalPrice');
+        const cartCount = document.getElementById('cartCount');
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMsg');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+
+        function openCart() { cartDrawer.classList.add('active'); cartOverlay.classList.add('active'); }
+        function closeCart() { cartDrawer.classList.remove('active'); cartOverlay.classList.remove('active'); }
+
+        openCartBtn.addEventListener('click', openCart);
+        closeCartBtn.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+
+        function showToast(msg) {
+            toastMsg.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
         }
+
+        // دالة الإضافة السريعة للسلة
+        function quickAdd(id, title, price, img) {
+            const existing = cart.find(i => i.id === id);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({
+                    id: id,
+                    title: title,
+                    price: price,
+                    img: img,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem('abu_kayan_cart', JSON.stringify(cart));
+            updateUI();
+            showToast(`تمت إضافة ${title} بنجاح!`);
+            openCart();
+        }
+
+        function updateUI() {
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div style="text-align:center; padding:50px 20px; color:#aaa;">
+                        <i class="fas fa-shopping-basket" style="font-size:3rem; opacity:0.3; margin-bottom:12px;"></i>
+                        <p style="font-weight:bold;">السلة فارغة حالياً</p>
+                    </div>
+                `;
+                cartTotalPrice.innerText = '0 ج.م';
+                cartCount.innerText = '0';
+                if (clearCartBtn) clearCartBtn.style.display = 'none';
+                return;
+            }
+
+            if (clearCartBtn) clearCartBtn.style.display = 'flex';
+
+            cart.forEach((item, index) => {
+                total += item.price * item.quantity;
+                count += item.quantity;
+
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <div class="cart-item-img" style="background-image:url('${item.img}')"></div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.title}</div>
+                        <div class="cart-item-price">${item.price * item.quantity} ج.م (×${item.quantity})</div>
+                    </div>
+                    <button onclick="removeItem(${index})" style="background:none; border:none; color:#bbb; cursor:pointer;" title="حذف"><i class="fas fa-trash-alt"></i></button>
+                `;
+                cartItemsContainer.appendChild(div);
+            });
+
+            cartTotalPrice.innerText = total + ' ج.م';
+            cartCount.innerText = count;
+        }
+
+        window.removeItem = function(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('abu_kayan_cart', JSON.stringify(cart));
+            updateUI();
+        };
+
+        window.clearFullCart = function() {
+            if (cart.length === 0) return;
+            if (confirm('هل أنت متأكد من تفريغ السلة بالكامل؟')) {
+                cart = [];
+                localStorage.removeItem('abu_kayan_cart');
+                updateUI();
+                showToast('تم تفريغ السلة بالكامل 🗑️');
+            }
+        };
+
+        updateUI();
     </script>
 </body>
 </html>
