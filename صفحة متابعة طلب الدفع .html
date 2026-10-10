@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="لوجو ابو كيان.jpg">
+    <title>تتبع طلبك مباشرة 2026 | مطعم أبو كيان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff7e00;
+            --primary-dark: #e06c00;
+            --primary-light: #fff3e6;
+            --dark: #2d1e16;
+            --bg-page: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --whatsapp: #25d366;
+            --success: #16a34a;
+            --radius-lg: 22px;
+            --radius-md: 14px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.06);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .home-btn {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            background: #f1f5f9;
+            padding: 8px 18px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+        .home-btn:hover { background: var(--primary-light); color: var(--primary); }
+
+        .container {
+            max-width: 900px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .status-hero-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--primary), var(--whatsapp));
+        }
+
+        .order-id-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .status-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .eta-timer-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            padding: 10px 22px;
+            border-radius: 50px;
+            margin-top: 10px;
+        }
+
+        .eta-timer-box i { color: var(--primary); font-size: 1.2rem; }
+        .eta-timer-text { font-weight: 800; font-size: 1.05rem; color: #334155; }
+
+        .tracker-steps-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 35px 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+        }
+
+        .tracking-timeline {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            margin: 20px 0 10px;
+        }
+
+        .tracking-timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 40px;
+            right: 40px;
+            height: 4px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+
+        .timeline-progress-line {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            height: 4px;
+            background: var(--whatsapp);
+            z-index: 1;
+            width: 35%;
+            transition: width 1s ease;
+        }
+
+        .step-node {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 25%;
+        }
+
+        .node-icon-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #cbd5e1;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: var(--transition);
+        }
+
+        .step-node.completed .node-icon-circle {
+            background: var(--whatsapp);
+            border-color: var(--whatsapp);
+            color: white;
+        }
+
+        .step-node.active .node-icon-circle {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 7px rgba(255, 126, 0, 0.2);
+            animation: pulseNode 1.5s infinite;
+        }
+
+        @keyframes pulseNode {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+
+        .step-node-title { font-weight: 800; font-size: 0.95rem; color: var(--dark); }
+        .step-node-time { font-size: 0.78rem; color: var(--text-muted); }
+
+        .order-details-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+        }
+
+        .card-header-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: var(--radius-md);
+        }
+
+        .info-col span:first-child { font-size: 0.82rem; color: var(--text-muted); display: block; }
+        .info-col span:last-child { font-size: 0.95rem; font-weight: 700; color: var(--dark); }
+
+        .items-list { margin-bottom: 20px; }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .item-name { font-weight: 800; font-size: 0.95rem; }
+        .item-meta { font-size: 0.8rem; color: var(--text-muted); }
+        .item-price { font-weight: 800; color: var(--primary); }
+
+        .total-summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--dark);
+            padding-top: 15px;
+            border-top: 2px solid var(--border);
+        }
+        .total-summary-row span:last-child { color: var(--primary); font-size: 1.4rem; }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .action-btn {
+            padding: 15px;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .btn-wa-live {
+            background: var(--whatsapp);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        .btn-wa-live:hover { background: #1ebc59; transform: translateY(-2px); }
+
+        .btn-call {
+            background: #f1f5f9;
+            color: var(--dark);
+            border: 1px solid var(--border);
+        }
+        .btn-call:hover { background: #e2e8f0; }
+
+        @media (max-width: 650px) {
+            .tracking-timeline { flex-direction: column; gap: 20px; align-items: flex-start; padding-right: 20px;}
+            .tracking-timeline::before, .timeline-progress-line { display: none; }
+            .step-node { flex-direction: row; width: 100%; text-align: right; }
+            .action-buttons { grid-template-columns: 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <i class="fas fa-utensils"></i> مطعم أبو كيان
+        </a>
+        <a href="index.html" class="home-btn">
+            <i class="fas fa-home"></i> الرئيسية
+        </a>
+    </nav>
+
+    <div class="container">
+        
+        <div class="status-hero-card">
+            <div class="order-id-badge" id="orderIdText">رقم الطلب: #AK-XXXX</div>
+            <h1 class="status-title" id="statusMainText">جاري تحضير وجبتك في المطبخ 👨‍🍳🔥</h1>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">شيف أبو كيان يقوم الآن بتجهيز طلبك بأعلى معايير الجودة والنظافة</p>
+            
+            <div class="eta-timer-box">
+                <i class="fas fa-stopwatch"></i>
+                <span class="eta-timer-text">الوقت المتوقع للوصول: <strong style="color: var(--primary);" id="countdownTimer">35 دقيقة</strong></span>
+            </div>
+        </div>
+
+        <div class="tracker-steps-card">
+            <div class="tracking-timeline">
+                <div class="timeline-progress-line" id="progressLine"></div>
+
+                <div class="step-node completed">
+                    <div class="node-icon-circle"><i class="fas fa-check"></i></div>
+                    <div class="step-node-title">تم التأكيد</div>
+                    <div class="step-node-time">منذ قليل</div>
+                </div>
+
+                <div class="step-node active" id="step2">
+                    <div class="node-icon-circle"><i class="fas fa-fire"></i></div>
+                    <div class="step-node-title">في المطبخ</div>
+                    <div class="step-node-time">الآن</div>
+                </div>
+
+                <div class="step-node" id="step3">
+                    <div class="node-icon-circle"><i class="fas fa-motorcycle"></i></div>
+                    <div class="step-node-title">مع المندوب</div>
+                    <div class="step-node-time">قريباً</div>
+                </div>
+
+                <div class="step-node" id="step4">
+                    <div class="node-icon-circle"><i class="fas fa-home"></i></div>
+                    <div class="step-node-title">تم الاستلام</div>
+                    <div class="step-node-time">بالهناء والشفاء</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="order-details-card">
+            <h2 class="card-header-title">
+                <i class="fas fa-clipboard-list" style="color: var(--primary);"></i>
+                تفاصيل الفاتورة والعنوان
+            </h2>
+
+            <div class="info-grid">
+                <div class="info-col">
+                    <span>اسم العميل:</span>
+                    <span id="custNameDisplay">عميل أبو كيان</span>
+                </div>
+                <div class="info-col">
+                    <span>رقم الهاتف:</span>
+                    <span id="custPhoneDisplay">01122278442</span>
+                </div>
+                <div class="info-col" style="grid-column: span 2;">
+                    <span>عنوان التوصيل:</span>
+                    <span id="custAddressDisplay">العنوان المسجل</span>
+                </div>
+                <div class="info-col">
+                    <span>طريقة الدفع:</span>
+                    <span id="custPaymentDisplay">كاش عند الاستلام</span>
+                </div>
+            </div>
+
+            <div class="items-list" id="orderItemsList"></div>
+
+            <div class="total-summary-row">
+                <span>الإجمالي الكلي المطلوب:</span>
+                <span id="orderGrandTotal">0 ج.م</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="https://wa.me/201122278442" class="action-btn btn-wa-live" id="waTrackBtn" target="_blank">
+                <i class="fab fa-whatsapp"></i> استفسار عن الطلب عبر واتساب
+            </a>
+            <a href="tel:01122278442" class="action-btn btn-call">
+                <i class="fas fa-phone-alt"></i> الاتصال بإدارة المطعم
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        const lastOrder = JSON.parse(localStorage.getItem('abu_kayan_last_order'));
+
+        if (lastOrder) {
+            document.getElementById('orderIdText').innerText = `رقم الطلب: #${lastOrder.orderId}`;
+            document.getElementById('custNameDisplay').innerText = lastOrder.name;
+            document.getElementById('custPhoneDisplay').innerText = lastOrder.phone;
+            document.getElementById('custAddressDisplay').innerText = lastOrder.address;
+            document.getElementById('custPaymentDisplay').innerText = lastOrder.payment;
+            document.getElementById('orderGrandTotal').innerText = `${lastOrder.total} ج.م`;
+
+            const waMsg = `مرحباً مطعم أبو كيان، أرغب في الاستفسار عن حالة طلبي رقم: %23${lastOrder.orderId}`;
+            document.getElementById('waTrackBtn').href = `https://wa.me/201122278442?text=${waMsg}`;
+
+            const itemsList = document.getElementById('orderItemsList');
+            itemsList.innerHTML = '';
+            lastOrder.items.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'item-row';
+                div.innerHTML = `
+                    <div>
+                        <div class="item-name">${item.title} (×${item.quantity})</div>
+                        <div class="item-meta">${item.size ? item.size : ''} ${item.extras ? '| ' + item.extras : ''}</div>
+                    </div>
+                    <div class="item-price">${item.price * item.quantity} ج.م</div>
+                `;
+                itemsList.appendChild(div);
+            });
+        }
+
+        let minutes = 34;
+        let seconds = 59;
+        const timerElement = document.getElementById('countdownTimer');
+
+        setInterval(() => {
+            if (seconds > 0) {
+                seconds--;
+            } else if (minutes > 0) {
+                minutes--;
+                seconds = 59;
+            }
+            timerElement.innerText = `${minutes} دقيقة و ${seconds} ثانية`;
+        }, 1000);
+
+        setTimeout(() => {
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step2').classList.add('completed');
+            document.getElementById('step3').classList.add('active');
+            document.getElementById('progressLine').style.width = '70%';
+            document.getElementById('statusMainText').innerText = 'المندوب استلم طلبك وهو في الطريق إليك 🛵💨';
+        }, 8000);
+    </script>
+</body>
+</html>

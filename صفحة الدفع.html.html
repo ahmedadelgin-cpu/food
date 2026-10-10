@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpeg" href="لوجو ابو كيان.jpg">
+    <title>إتمام الطلب والدفع الذكي 2026 | مطعم أبو كيان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff7e00;
+            --primary-dark: #e06c00;
+            --primary-light: #fff4eb;
+            --dark: #2d1e16;
+            --bg-page: #f9fbfd;
+            --card-bg: #ffffff;
+            --border: #eef2f6;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --whatsapp: #25d366;
+            --instapay: #5925dc;
+            --vodafone: #e60000;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --shadow-sm: 0 4px 15px rgba(0,0,0,0.03);
+            --shadow-md: 0 12px 30px rgba(0,0,0,0.06);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* الناف بار الفاخر */
+        .checkout-nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 16px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .checkout-nav .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            background: #f1f5f9;
+            transition: var(--transition);
+        }
+        .back-link:hover { background: var(--primary-light); color: var(--primary); }
+
+        /* شريط خطوات الطلب 2026 */
+        .steps-bar {
+            max-width: 700px;
+            margin: 30px auto 20px;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .steps-bar::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            right: 50px;
+            height: 3px;
+            background: #e2e8f0;
+            z-index: 1;
+        }
+
+        .step-item {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #cbd5e1;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            transition: var(--transition);
+        }
+
+        .step-item.completed .step-icon {
+            background: var(--whatsapp);
+            border-color: var(--whatsapp);
+            color: white;
+        }
+
+        .step-item.active .step-icon {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 6px rgba(255, 126, 0, 0.2);
+        }
+
+        .step-text { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); }
+        .step-item.active .step-text { color: var(--primary); font-weight: 800; }
+
+        /* الشبكة الرئيسية */
+        .checkout-grid {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .card-box {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+            transition: var(--transition);
+        }
+
+        .card-box:hover { box-shadow: var(--shadow-md); }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header i {
+            font-size: 1.3rem;
+            color: var(--primary);
+            background: var(--primary-light);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-header h2 { font-size: 1.25rem; font-weight: 800; color: var(--dark); }
+
+        /* نموذج البيانات */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 15px;}
+        .form-group.full { grid-column: span 2; }
+
+        .form-group label {
+            font-weight: 700;
+            font-size: 0.88rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 13px 16px;
+            border-radius: var(--radius-md);
+            border: 1.5px solid #e2e8f0;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 0.95rem;
+            background: #f8fafc;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(255, 126, 0, 0.12);
+        }
+
+        /* طرق الدفع المتطورة */
+        .payment-methods-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pay-card {
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            background: white;
+            position: relative;
+        }
+
+        .pay-card:hover { border-color: #cbd5e1; transform: translateY(-2px); }
+
+        .pay-card.active {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .pay-radio {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .pay-icon {
+            font-size: 1.6rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f5f9;
+        }
+
+        .pay-details { flex-grow: 1; }
+        .pay-title { font-weight: 800; font-size: 1rem; color: var(--dark); display: flex; align-items: center; gap: 8px;}
+        .pay-subtitle { font-size: 0.8rem; color: var(--text-muted); }
+
+        .pay-badge {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-weight: 800;
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        /* تفاصيل طريقة الدفع المنسدلة */
+        .pay-instruction-box {
+            background: white;
+            border: 1.5px dashed var(--primary);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .copy-wallet-btn {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 6px;
+            transition: var(--transition);
+        }
+        .copy-wallet-btn:hover { background: var(--primary); }
+
+        /* ملخص الطلب والفاتورة */
+        .order-summary-sidebar {
+            position: sticky;
+            top: 95px;
+        }
+
+        .summary-meals-list {
+            max-height: 280px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-left: 5px;
+        }
+
+        .meal-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .meal-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .meal-info { flex-grow: 1; }
+        .meal-name { font-weight: 800; font-size: 0.92rem; color: var(--dark); }
+        .meal-extras { font-size: 0.78rem; color: var(--text-muted); }
+        .meal-price { font-weight: 800; color: var(--primary); font-size: 0.95rem; }
+
+        /* كوبون الخصم */
+        .promo-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .promo-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .promo-btn {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .promo-btn:hover { background: var(--primary); }
+
+        /* الفاتورة */
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 9px;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+
+        .bill-row.discount-row { color: #16a34a; font-weight: 700; display: none; }
+
+        .bill-row.total-row {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--dark);
+            border-top: 2px solid var(--border);
+            padding-top: 14px;
+            margin-top: 14px;
+        }
+
+        .bill-row.total-row span:last-child { color: var(--primary); }
+
+        /* زر التأكيد الكبير */
+        .btn-confirm-order {
+            width: 100%;
+            padding: 16px;
+            background: var(--whatsapp);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 1.15rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.35);
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        .btn-confirm-order:hover {
+            background: #1ebc59;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.45);
+        }
+
+        /* كارت تتبع الواتساب 2026 */
+        .whatsapp-tracking-box {
+            background: linear-gradient(135deg, #f0fdf4 0%, #e8f8ee 100%);
+            border: 1.5px solid #bbf7d0;
+            border-radius: var(--radius-lg);
+            padding: 22px;
+            margin-top: 20px;
+        }
+
+        .tracking-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            color: #166534;
+            font-size: 1rem;
+            margin-bottom: 12px;
+        }
+
+        .tracking-steps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: #14532d;
+        }
+
+        .tracking-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tracking-step i { color: var(--whatsapp); font-size: 1rem; }
+
+        /* نافذة النجاح والتوجيه */
+        .success-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .success-overlay.active { opacity: 1; visibility: visible; }
+
+        .success-card {
+            background: white;
+            width: 90%;
+            max-width: 480px;
+            padding: 40px 30px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            animation: zoomUp 0.35s ease;
+        }
+
+        @keyframes zoomUp {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .success-check-circle {
+            width: 80px;
+            height: 80px;
+            background: #dcfce7;
+            color: #16a34a;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            margin: 0 auto 20px;
+        }
+
+        .order-badge-pill {
+            display: inline-block;
+            background: #f1f5f9;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0 15px;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-group.full { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الناف بار -->
+    <nav class="checkout-nav">
+        <a href="index.html" class="logo">
+            <i class="fas fa-utensils"></i> مطعم أبو كيان
+        </a>
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-right"></i> العودة لقائمة الطعام
+        </a>
+    </nav>
+
+    <!-- شريط الخطوات الذكي 2026 -->
+    <div class="steps-bar">
+        <div class="step-item completed">
+            <div class="step-icon"><i class="fas fa-shopping-basket"></i></div>
+            <span class="step-text">السلة</span>
+        </div>
+        <div class="step-item active">
+            <div class="step-icon">2</div>
+            <span class="step-text">الدفع والتوصيل</span>
+        </div>
+        <div class="step-item">
+            <div class="step-icon">3</div>
+            <span class="step-text">تتبع الطلب</span>
+        </div>
+    </div>
+
+    <!-- المحتوى الرئيسي -->
+    <div class="checkout-grid">
+        
+        <!-- قسم الإدخال -->
+        <div class="checkout-main-content">
+            
+            <!-- 1. بيانات العميل والتوصيل -->
+            <div class="card-box">
+                <div class="section-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h2>بيانات العميل وعنوان التوصيل</h2>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group full">
+                        <label>الاسم بالكامل <span style="color: red;">*</span></label>
+                        <input type="text" id="custName" placeholder="اكتب اسمك الكريم" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>رقم الهاتف (الواتساب للتواصل) <span style="color: red;">*</span></label>
+                        <input type="tel" id="custPhone" placeholder="01xxxxxxxxx" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>رقم هاتف بديل (اختياري)</label>
+                        <input type="tel" id="custPhone2" placeholder="رقم إضافي">
+                    </div>
+
+                    <div class="form-group full">
+                        <label>العنوان بالتفصيل <span style="color: red;">*</span></label>
+                        <input type="text" id="custAddress" placeholder="المنطقة - الشارع - رقم العقار - رقم الشقة والعلامة المميزة" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label>ملاحظات إضافية للمطبخ أو المندوب</label>
+                        <textarea id="custNotes" rows="2" placeholder="مثال: بدون بصل، كاتشب ومايونيز زيادة، الاتصال قبل الصعود..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. جميع أنواع الدفع المتاحة 2026 -->
+            <div class="card-box">
+                <div class="section-header">
+                    <i class="fas fa-credit-card"></i>
+                    <h2>اختر طريقة الدفع المناسبة</h2>
+                </div>
+
+                <div class="payment-methods-grid">
+                    
+                    <!-- 1. كاش عند الاستلام -->
+                    <label class="pay-card active" onclick="selectPayment(this, 'cod')">
+                        <input type="radio" name="paymentMethod" value="الدفع نقداً عند الاستلام (كاش)" checked class="pay-radio">
+                        <div class="pay-icon" style="color: #16a34a;"><i class="fas fa-money-bill-wave"></i></div>
+                        <div class="pay-details">
+                            <div class="pay-title">الدفع نقداً عند الاستلام (كاش) <span class="pay-badge">الأكثر استخداماً</span></div>
+                            <div class="pay-subtitle">ادفع نقداً لمندوب التوصيل فور استلام وجبتك الساخنة</div>
+                        </div>
+                    </label>
+
+                    <div class="pay-instruction-box" id="codDetails" style="display: block;">
+                        <label style="font-weight: 700; display: block; margin-bottom: 5px;">هل تحتاج فكة من مبلغ معين؟</label>
+                        <input type="text" id="codChange" placeholder="مثال: معي ورقة 500 جنيه ومحتاج الباقي..." style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 8px;">
+                    </div>
+
+                    <!-- 2. فودافون كاش ومحافظ المحمول -->
+                    <label class="pay-card" onclick="selectPayment(this, 'wallet')">
+                        <input type="radio" name="paymentMethod" value="محفظة إلكترونية (فودافون/أورنج/اتصالات/وي كاش)" class="pay-radio">
+                        <div class="pay-icon" style="color: var(--vodafone);"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="pay-details">
+                            <div class="pay-title">محافظ المحمول الإلكترونية</div>
+                            <div class="pay-subtitle">فودافون كاش | أورنج كاش | اتصالات كاش | وي باي</div>
+                        </div>
+                    </label>
+
+                    <div class="pay-instruction-box" id="walletDetails">
+                        <strong>📲 رقم تحويل المحفظة الرسمي لمطعم أبو كيان:</strong><br>
+                        <span style="font-size: 1.2rem; font-weight: 900; color: var(--vodafone);" id="walletNum">01122278442</span>
+                        <br>
+                        <button type="button" class="copy-wallet-btn" onclick="copyNumber('01122278442')">
+                            <i class="fas fa-copy"></i> نسخ الرقم
+                        </button>
+                        <p style="margin-top: 8px; font-size: 0.8rem; color: #666;">* بعد التحويل، يرجى إرسال لقطة شاشة للإيصال في محادثة الواتساب لتأكيد الطلب فورياً.</p>
+                    </div>
+
+                    <!-- 3. إنستاباي InstaPay -->
+                    <label class="pay-card" onclick="selectPayment(this, 'instapay')">
+                        <input type="radio" name="paymentMethod" value="إنستاباي (InstaPay Egypt)" class="pay-radio">
+                        <div class="pay-icon" style="color: var(--instapay);"><i class="fas fa-bolt"></i></div>
+                        <div class="pay-details">
+                            <div class="pay-title">إنستاباي (InstaPay) <span class="pay-badge" style="background:#ede9fe; color:var(--instapay);">لحظي 0% رسوم</span></div>
+                            <div class="pay-subtitle">تحويل بنكي فوري مباشر من تطبيق إنستاباي</div>
+                        </div>
+                    </label>
+
+                    <div class="pay-instruction-box" id="instapayDetails">
+                        <strong>⚡ عنوان الدفع اللحظي / رقم الهاتف:</strong><br>
+                        <span style="font-size: 1.15rem; font-weight: 900; color: var(--instapay);">01122278442</span>
+                        <button type="button" class="copy-wallet-btn" onclick="copyNumber('01122278442')">
+                            <i class="fas fa-copy"></i> نسخ الرقم
+                        </button>
+                    </div>
+
+                    <!-- 4. بطاقة بنكية (فيزا مع المندوب) -->
+                    <label class="pay-card" onclick="selectPayment(this, 'card')">
+                        <input type="radio" name="paymentMethod" value="بطاقة بنكية (فيزا/ماستركارد مع المندوب)" class="pay-radio">
+                        <div class="pay-icon" style="color: #2563eb;"><i class="fas fa-credit-card"></i></div>
+                        <div class="pay-details">
+                            <div class="pay-title">بطاقة بنكية (فيزا / ماستركارد / ميزة)</div>
+                            <div class="pay-subtitle">سيحضر المندوب ماكينة الـ POS الإلكترونية للدفع عند الباب</div>
+                        </div>
+                    </label>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ملخص الطلب والجانب الأيسر -->
+        <div class="order-summary-sidebar">
+            
+            <div class="card-box">
+                <div class="section-header">
+                    <i class="fas fa-receipt"></i>
+                    <h2>ملخص الفاتورة</h2>
+                </div>
+
+                <div class="summary-meals-list" id="mealsList"></div>
+
+                <!-- كوبون الخصم -->
+                <div class="promo-box">
+                    <input type="text" id="promoInput" class="promo-input" placeholder="كود الخصم (جرب: KAYAN10)">
+                    <button type="button" class="promo-btn" onclick="applyPromo()">تطبيق</button>
+                </div>
+
+                <!-- تفاصيل الحساب -->
+                <div class="bill-row">
+                    <span>المجموع الفرعي:</span>
+                    <span id="subTotal">0 ج.م</span>
+                </div>
+                <div class="bill-row discount-row" id="discountRow">
+                    <span>خصم الكوبون (10%):</span>
+                    <span id="discountAmount">-0 ج.م</span>
+                </div>
+                <div class="bill-row">
+                    <span>خدمة التوصيل السريع:</span>
+                    <span id="deliveryCost">25 ج.م</span>
+                </div>
+                <div class="bill-row total-row">
+                    <span>الإجمالي المستحق:</span>
+                    <span id="finalTotal">0 ج.م</span>
+                </div>
+
+                <!-- زر التأكيد -->
+                <button type="button" class="btn-confirm-order" onclick="processOrder()">
+                    <i class="fab fa-whatsapp"></i> تأكيد الطلب والمتابعة لايف
+                </button>
+            </div>
+
+            <!-- كارت توضيح نظام المتابعة عبر واتساب لعام 2026 -->
+            <div class="whatsapp-tracking-box">
+                <div class="tracking-header">
+                    <i class="fab fa-whatsapp" style="font-size: 1.4rem;"></i>
+                    <span>نظام التتبع المباشر للطلب (WhatsApp Live)</span>
+                </div>
+                <div class="tracking-steps-list">
+                    <div class="tracking-step">
+                        <i class="fas fa-check-circle"></i>
+                        <span>1. إرسال وتأكيد تفاصيل الفاتورة مباشرة لمسؤول الفرع.</span>
+                    </div>
+                    <div class="tracking-step">
+                        <i class="fas fa-fire"></i>
+                        <span>2. إشعار فوري عند بدء تحضير الطعام الطازج في المطبخ.</span>
+                    </div>
+                    <div class="tracking-step">
+                        <i class="fas fa-motorcycle"></i>
+                        <span>3. تتبع مندوب التوصيل ورقم هاتفه حتى وصوله لبابك.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- نافذة نجاح الطلب الفاخرة -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-card">
+            <div class="success-check-circle"><i class="fas fa-check"></i></div>
+            <h2 style="font-weight: 900; color: var(--dark);">تم تسجيل طلبك بنجاح!</h2>
+            <div class="order-badge-pill" id="displayOrderId">رقم الطلب: #AK-0000</div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5;">
+                جاري توجيهك الآن إلى محادثة الواتساب لبدء التتبع الفوري وتأكيد التوصيل...
+            </p>
+            <div style="margin-top: 25px;">
+                <a href="index.html" class="back-link" style="display: inline-block;">العودة للموقع الرئيسي</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // قراءة بيانات السلة من LocalStorage
+        let cart = JSON.parse(localStorage.getItem('abu_kayan_cart')) || [];
+        const deliveryFee = 25; // خدمة التوصيل
+        let discountPercent = 0;
+
+        // عرض منتجات السلة
+        function loadSummary() {
+            const container = document.getElementById('mealsList');
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 25px; color: #94a3b8;">
+                        <i class="fas fa-shopping-basket" style="font-size: 2.5rem; opacity: 0.4; margin-bottom: 10px;"></i>
+                        <p style="font-weight: bold;">سلتك فارغة حالياً!</p>
+                        <a href="index.html" style="color: var(--primary); font-size: 0.9rem; text-decoration: none;">تصفح المنيو وأضف وجباتك الآن</a>
+                    </div>
+                `;
+                calculateTotals(0);
+                return;
+            }
+
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                let itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                const div = document.createElement('div');
+                div.className = 'meal-item';
+                div.innerHTML = `
+                    <div class="meal-img" style="background-image: url('${item.img}')"></div>
+                    <div class="meal-info">
+                        <div class="meal-name">${item.title} (×${item.quantity})</div>
+                        <div class="meal-extras">
+                            ${item.size ? `الحجم: ${item.size}` : ''}
+                            ${item.extras ? ` | ${item.extras}` : ''}
+                        </div>
+                    </div>
+                    <div class="meal-price">${itemTotal} ج.م</div>
+                `;
+                container.appendChild(div);
+            });
+
+            calculateTotals(subtotal);
+        }
+
+        // حساب الإجماليات والخصم
+        function calculateTotals(subtotal) {
+            let discountValue = (subtotal * discountPercent) / 100;
+            let grandTotal = subtotal - discountValue + (subtotal > 0 ? deliveryFee : 0);
+
+            document.getElementById('subTotal').innerText = `${subtotal} ج.م`;
+
+            if (discountPercent > 0) {
+                document.getElementById('discountRow').style.display = 'flex';
+                document.getElementById('discountAmount').innerText = `-${discountValue.toFixed(0)} ج.م`;
+            } else {
+                document.getElementById('discountRow').style.display = 'none';
+            }
+
+            document.getElementById('finalTotal').innerText = `${grandTotal.toFixed(0)} ج.م`;
+        }
+
+        // تطبيق كود الخصم
+        function applyPromo() {
+            const code = document.getElementById('promoInput').value.trim().toUpperCase();
+            if (code === 'KAYAN10') {
+                discountPercent = 10;
+                alert('🎉 تهانينا! تم تطبيق كود الخصم بنجاح (10% خصم).');
+                loadSummary();
+            } else if (code === '') {
+                alert('يرجى إدخال كود الخصم.');
+            } else {
+                alert('عذراً، كود الخصم غير صالح أو منتهي الصلاحية.');
+            }
+        }
+
+        // اختيار طريقة الدفع وعرض تفاصيلها
+        function selectPayment(cardElement, type) {
+            document.querySelectorAll('.pay-card').forEach(c => c.classList.remove('active'));
+            cardElement.classList.add('active');
+            cardElement.querySelector('.pay-radio').checked = true;
+
+            // إخفاء كل الصناديق
+            document.getElementById('codDetails').style.display = 'none';
+            document.getElementById('walletDetails').style.display = 'none';
+            document.getElementById('instapayDetails').style.display = 'none';
+
+            if (type === 'cod') document.getElementById('codDetails').style.display = 'block';
+            if (type === 'wallet') document.getElementById('walletDetails').style.display = 'block';
+            if (type === 'instapay') document.getElementById('instapayDetails').style.display = 'block';
+        }
+
+        // نسخ رقم التحويل
+        function copyNumber(num) {
+            navigator.clipboard.writeText(num);
+            alert(`تم نسخ الرقم بنجاح: ${num}`);
+        }
+
+        // تأكيد الطلب وإرسال رسالة الواتساب 2026
+        function processOrder() {
+            if (cart.length === 0) {
+                alert('لا يمكن إتمام الطلب، السلة فارغة!');
+                return;
+            }
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const phone2 = document.getElementById('custPhone2').value.trim();
+            const address = document.getElementById('custAddress').value.trim();
+            const notes = document.getElementById('custNotes').value.trim();
+            const codChange = document.getElementById('codChange').value.trim();
+            const selectedPay = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+            if (!name || !phone || !address) {
+                alert('يرجى استكمال البيانات الأساسية: الاسم، رقم الهاتف، والعنوان بالتفصيل.');
+                return;
+            }
+
+            // توليد رقم طلب مميز 2026
+            const orderId = 'AK-' + Math.floor(1000 + Math.random() * 9000);
+
+            let subtotal = 0;
+            let itemsText = '';
+
+            cart.forEach((item, index) => {
+                let cost = item.price * item.quantity;
+                subtotal += cost;
+                itemsText += `*${index + 1}. ${item.title}*%0A`;
+                if (item.size) itemsText += `   - الحجم: ${item.size}%0A`;
+                if (item.extras) itemsText += `   - إضافات: ${item.extras}%0A`;
+                itemsText += `   - الكمية: ${item.quantity} × ${item.price} = ${cost} ج.م%0A%0A`;
+            });
+
+            let discountValue = (subtotal * discountPercent) / 100;
+            let grandTotal = subtotal - discountValue + deliveryFee;
+
+            // رسالة الواتساب المهيكلة لعام 2026
+            let msg = `🌟 *طلب جديد من موقع مطعم أبو كيان* 🌟%0A`;
+            msg += `🏷️ *رقم الطلب:* ${orderId}%0A`;
+            msg += `-----------------------------------%0A`;
+            msg += `👤 *اسم العميل:* ${name}%0A`;
+            msg += `📞 *الهاتف الأساسي:* ${phone}%0A`;
+            if (phone2) msg += `📞 *هاتف إضافي:* ${phone2}%0A`;
+            msg += `📍 *عنوان التوصيل:* ${address}%0A`;
+            if (notes) msg += `📝 *ملاحظات خاصة:* ${notes}%0A`;
+            msg += `💳 *طريقة الدفع المختارة:* ${selectedPay}%0A`;
+            if (codChange && selectedPay.includes('نقداً')) msg += `💵 *الفكة المطلوبة:* ${codChange}%0A`;
+            msg += `-----------------------------------%0A`;
+            msg += `📋 *تفاصيل الأصناف والوجبات:*%0A%0A${itemsText}`;
+            msg += `-----------------------------------%0A`;
+            msg += `المجموع الفرعي: ${subtotal} ج.م%0A`;
+            if (discountPercent > 0) msg += `خصم الكوبون (10%): -${discountValue.toFixed(0)} ج.م%0A`;
+            msg += `خدمة التوصيل: ${deliveryFee} ج.م%0A`;
+            msg += `*💰 الإجمالي المطلوب سداده: ${grandTotal.toFixed(0)} جنيه مصري*%0A`;
+            msg += `-----------------------------------%0A`;
+            msg += `🚀 يرجى تأكيد استلام الطلب وبدء التحضير مع المتابعة المباشرة. شكراً لكم!`;
+
+            // إظهار نافذة النجاح
+            document.getElementById('displayOrderId').innerText = `رقم الطلب: #${orderId}`;
+            document.getElementById('successOverlay').classList.add('active');
+
+            // تفريغ السلة
+            localStorage.removeItem('abu_kayan_cart');
+
+            // التوجيه للواتساب بعد ثانيتين
+            setTimeout(() => {
+                window.open(`https://wa.me/201122278442?text=${msg}`, '_blank');
+            }, 2000);
+        }
+
+        // تشغيل التحميل
+        loadSummary();
+    </script>
+</body>
+</html>
